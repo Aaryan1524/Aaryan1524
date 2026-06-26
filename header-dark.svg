@@ -14,13 +14,13 @@
 
   <rect width="850" height="220" class="paper"/>
 
-  <text x="425" y="48" text-anchor="middle" class="label muted" font-size="13">PERSONAL  INTELLIGENCE  ·  EST. 2026</text>
+  <text x="425" y="48" text-anchor="middle" class="label muted" font-size="13">EST. 2004</text>
 
   <line x1="150" y1="44" x2="245" y2="44" class="rule"/>
   <line x1="605" y1="44" x2="700" y2="44" class="rule"/>
 
   <text x="417" y="124" text-anchor="middle" class="ink" font-size="62">
-    <tspan class="name">Aaryan</tspan><tspan class="ital"> Gulati</tspan>
+    <tspan class="name">Aaryan</tspan><tspan class="ital"> Gajula</tspan>
   </text>
 
   <text x="425" y="170" text-anchor="middle" class="sub muted" font-size="20">Building at the intersection of AI, systems, and product.</text>
