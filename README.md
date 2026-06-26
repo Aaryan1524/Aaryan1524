@@ -1,5 +1,5 @@
-<img src="https://raw.githubusercontent.com/Aaryan1524/Aaryan1524/main/assets/header-light.svg#gh-light-mode-only" width="100%" alt="Aaryan Gajula">
-<img src="https://raw.githubusercontent.com/Aaryan1524/Aaryan1524/main/assets/header-dark.svg#gh-dark-mode-only" width="100%" alt="Aaryan Gajula">
+<img src="https://raw.githubusercontent.com/Aaryan1524/Aaryan1524/main/header-light.svg#gh-light-mode-only" width="100%" alt="Aaryan Gajula">
+<img src="https://raw.githubusercontent.com/Aaryan1524/Aaryan1524/main/header-dark.svg#gh-dark-mode-only" width="100%" alt="Aaryan Gajula">
 
 <p align="center">
   <a href="https://tevarta.com"><img src="https://img.shields.io/badge/Te_Vārtā-A0492D?style=flat-square&logoColor=white" /></a>
