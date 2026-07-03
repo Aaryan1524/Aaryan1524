@@ -1,15 +1,43 @@
 <img src="https://raw.githubusercontent.com/Aaryan1524/Aaryan1524/main/header-light.svg#gh-light-mode-only" width="100%" alt="Aaryan Gajula">
 <img src="https://raw.githubusercontent.com/Aaryan1524/Aaryan1524/main/header-dark.svg#gh-dark-mode-only" width="100%" alt="Aaryan Gajula">
 
-📍 **Mumbai → Miami → SF '27** &nbsp;|&nbsp; 🎓 **FIU CS '27** &nbsp;|&nbsp; 🛠️ **Founder @ [Te Vārtā](https://tevarta.com)**
+📍 **Mumbai → Miami** &nbsp;|&nbsp; 🎓 **FIU CS '27** &nbsp;|&nbsp; 🛠️ **Founder @ [Te Vārtā](https://tevarta.com)**
 
-Building at the intersection of **AI, systems, and product** — deterministic cores, LLMs only where they earn their place.
+Building at the intersection of **AI, systems, and product** deterministic cores, LLMs only where they earn their place.
 
-<p>
-  <img src="https://skillicons.dev/icons?i=python,fastapi,react,nextjs,ts,postgres,supabase,docker,aws,tailwind&perline=10" />
-</p>
+### Tech Stack
 
-<sub>Knowledge graphs · RAG pipelines · spaCy NER · Claude & Gemini APIs · Neo4j</sub>
+<sub>Languages — most used first</sub>
+
+![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![SQL](https://img.shields.io/badge/-SQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![Java](https://img.shields.io/badge/-Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
+
+<sub>Frameworks & AI</sub>
+
+![FastAPI](https://img.shields.io/badge/-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/-React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/-Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/-Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Claude API](https://img.shields.io/badge/-Claude_API-D97757?style=flat-square&logo=claude&logoColor=white)
+![Gemini API](https://img.shields.io/badge/-Gemini_API-8E75B2?style=flat-square&logo=googlegemini&logoColor=white)
+![spaCy](https://img.shields.io/badge/-spaCy-09A3D5?style=flat-square&logo=spacy&logoColor=white)
+
+<sub>Data & Infra</sub>
+
+![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![Supabase](https://img.shields.io/badge/-Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white)
+![Neo4j](https://img.shields.io/badge/-Neo4j-4581C3?style=flat-square&logo=neo4j&logoColor=white)
+![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![AWS](https://img.shields.io/badge/-AWS-FF9900?style=flat-square&logoColor=white)
+![Git](https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white)
+
+<sub>Knowledge graphs · RAG pipelines · NER · agentic workflows</sub>
 
 <br/>
 
@@ -75,7 +103,7 @@ Building at the intersection of **AI, systems, and product** — deterministic c
 
 - **Building Te Vārtā** — a news engine that knows what *you* need to know, not what trends
 - **Researching AI for care** — memory-recall systems for dementia patients @ FIU
-- **Studying markets** — defense, nuclear, quantum, space, AI infra; scenario modeling over hype
+- **Studying markets** — scenario modeling over hype
 - **Shipping fast** — hackathons, prototypes, and tools that solve my own problems first
 
 <!--
