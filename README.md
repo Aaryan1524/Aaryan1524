@@ -1,53 +1,9 @@
 <img src="https://raw.githubusercontent.com/Aaryan1524/Aaryan1524/main/header-light.svg#gh-light-mode-only" width="100%" alt="Aaryan Gajula">
 <img src="https://raw.githubusercontent.com/Aaryan1524/Aaryan1524/main/header-dark.svg#gh-dark-mode-only" width="100%" alt="Aaryan Gajula">
 
-<p align="center">
-  <a href="https://tevarta.com"><img src="https://img.shields.io/badge/Te_Vārtā-A0492D?style=flat-square&logoColor=white" /></a>
-  &nbsp;
-  <a href="https://twitter.com/your_handle"><img src="https://img.shields.io/badge/X-1A1A18?style=flat-square&logo=x&logoColor=white" /></a>
-  &nbsp;
-  <a href="https://linkedin.com/in/your_handle"><img src="https://img.shields.io/badge/LinkedIn-1A1A18?style=flat-square&logo=linkedin&logoColor=white" /></a>
-  &nbsp;
-  <a href="mailto:your@email.com"><img src="https://img.shields.io/badge/Email-1A1A18?style=flat-square&logo=maildotru&logoColor=white" /></a>
-</p>
+📍 **Mumbai → Miami → SF '27** &nbsp;|&nbsp; 🎓 **FIU CS '27** &nbsp;|&nbsp; 🛠️ **Founder @ [Te Vārtā](https://tevarta.com)**
 
-<br/>
-
-<!-- ───────────────────────────────────────── -->
-
-## &nbsp;Currently
-
-<table>
-<tr>
-<td width="33%" valign="top">
-
-**Te Vārtā** &nbsp;·&nbsp; <sub>founder</sub>
-<br/>
-Personal-intelligence news engine. Deterministic knowledge-graph core, LLM only at the presentation layer.
-
-</td>
-<td width="33%" valign="top">
-
-**Ember** &nbsp;·&nbsp; <sub>research</sub>
-<br/>
-AI memory-recall for dementia care, with Dr. Chen Chen @ FIU. Targeting a UIST poster.
-
-</td>
-<td width="33%" valign="top">
-
-**Markets** &nbsp;·&nbsp; <sub>conviction</sub>
-<br/>
-Defense, nuclear, quantum, space, AI infra. Scenario modeling over hype.
-
-</td>
-</tr>
-</table>
-
-<br/>
-
-<!-- ───────────────────────────────────────── -->
-
-## &nbsp;Stack
+Building at the intersection of **AI, systems, and product** — deterministic cores, LLMs only where they earn their place.
 
 <p>
   <img src="https://skillicons.dev/icons?i=python,fastapi,react,nextjs,ts,postgres,supabase,docker,aws,tailwind&perline=10" />
@@ -55,71 +11,59 @@ Defense, nuclear, quantum, space, AI infra. Scenario modeling over hype.
 
 <sub>Knowledge graphs · RAG pipelines · spaCy NER · Claude & Gemini APIs · Neo4j</sub>
 
-<br/><br/>
-
-<!-- ───────────────────────────────────────── -->
-
-## &nbsp;Selected Work
-
-<table>
-  <tr>
-    <td width="50%" valign="top">
-      <a href="https://github.com/Aaryan1524/RepoParser">
-        <img src="https://github-readme-stats.vercel.app/api/pin/?username=Aaryan1524&repo=RepoParser&hide_border=true&title_color=A0492D&icon_color=A0492D&text_color=808080&bg_color=00000000" />
-      </a>
-    </td>
-    <td width="50%" valign="top">
-      <a href="https://github.com/Aaryan1524/applied-ai-system-project">
-        <img src="https://github-readme-stats.vercel.app/api/pin/?username=Aaryan1524&repo=applied-ai-system-project&hide_border=true&title_color=A0492D&icon_color=A0492D&text_color=808080&bg_color=00000000" />
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top">
-      <a href="https://github.com/Aaryan1524/Personal_trading">
-        <img src="https://github-readme-stats.vercel.app/api/pin/?username=Aaryan1524&repo=Personal_trading&hide_border=true&title_color=A0492D&icon_color=A0492D&text_color=808080&bg_color=00000000" />
-      </a>
-    </td>
-    <td width="50%" valign="top">
-      <a href="https://github.com/Aaryan1524/Shadow-PrincetonHacks-Education-Track-">
-        <img src="https://github-readme-stats.vercel.app/api/pin/?username=Aaryan1524&repo=Shadow-PrincetonHacks-Education-Track-&hide_border=true&title_color=A0492D&icon_color=A0492D&text_color=808080&bg_color=00000000" />
-      </a>
-    </td>
-  </tr>
-</table>
-
-<br/>
-
-#### &nbsp;More
-
-<table>
-<tr>
-<td valign="top" width="50%">
-
-**AI & Systems**
-- [NSE_sentiment_analysis](https://github.com/Aaryan1524/NSE_sentiment_analysis) — market sentiment from NSE data
-- [Concurrent-Job-Scheduler](https://github.com/Aaryan1524/Concurrent-Job-Scheduler) — multithreaded scheduler in Java
-- [Chess_server](https://github.com/Aaryan1524/Chess_server) — game server in Python
-
-</td>
-<td valign="top" width="50%">
-
-**Products & Hacks**
-- [StackMap](https://github.com/Aaryan1524/StackMap) — HackPrinceton project
-- [FIU-Marketplace](https://github.com/Aaryan1524/FIU-Marketplace) — campus marketplace
-- [Prompt-Perfector-AI](https://github.com/Aaryan1524/Prompt-Perfector-AI) — prompt-optimization tool
-- [GlassUXdesign](https://github.com/Aaryan1524/GlassUXdesign) — Apple-style glass UI experiments
-- [AI-loan-Repayment](https://github.com/Aaryan1524/AI-loan-Repayment) — repayment modeling
-
-</td>
-</tr>
-</table>
-
 <br/>
 
 <!-- ───────────────────────────────────────── -->
 
-## &nbsp;The Numbers
+## Start Here
+
+- 📰 **[Te Vārtā](https://tevarta.com)** — personal-intelligence news engine; deterministic knowledge-graph core, LLM only at the presentation layer
+- 🧠 **Ember** — AI memory-recall for dementia care, with Dr. Chen Chen @ FIU; targeting a UIST poster
+- 🔍 **[RepoParser](https://github.com/Aaryan1524/RepoParser)** — chat with any GitHub repo; RAG over an ingested codebase
+- 🦞 **[moltbot](https://github.com/Aaryan1524/moltbot)** — your own personal AI assistant, any OS, any platform
+- 📈 **[Personal_trading](https://github.com/Aaryan1524/Personal_trading)** — scenario modeling over hype
+
+## Current Projects
+
+### Te Vārtā & Research
+
+- 📰 **[Te Vārtā](https://tevarta.com)** — personal-intelligence news engine
+- 🏗️ **[TeVarta-architecture](https://github.com/Aaryan1524/TeVarta-architecture)** — system design behind the engine
+- 🧠 **Ember** — AI memory-recall research for dementia care (FIU, w/ Dr. Chen Chen)
+
+### AI & Agents
+
+- 🔍 **[RepoParser](https://github.com/Aaryan1524/RepoParser)** — RAG tool to chat with a codebase ("explain the auth logic," "write a test for this class")
+- 🦞 **[moltbot](https://github.com/Aaryan1524/moltbot)** — personal AI assistant, the lobster way
+- 🎭 **[personaplex_ai_assistant](https://github.com/Aaryan1524/personaplex_ai_assistant)** — PersonaPlex assistant
+- ✨ **[Prompt-Perfector-AI](https://github.com/Aaryan1524/Prompt-Perfector-AI-)** — turns vague prompts into precise, optimized ones
+- ⚙️ **[gstack](https://github.com/Aaryan1524/gstack)** — Garry Tan's exact Claude Code setup: CEO, Eng Manager, Release Manager & QA in 6 tools
+- 📚 **[ai-engineering-field-guide](https://github.com/Aaryan1524/ai-engineering-field-guide)** — research into AI engineering interviews & hiring practices
+- 🧪 **[applied-ai-system-project](https://github.com/Aaryan1524/applied-ai-system-project)** — applied AI systems coursework project
+- ⚡ **[Claude-Efficiency](https://github.com/Aaryan1524/Claude-Efficiency)** — getting more out of Claude
+
+### Markets & Trading
+
+- 📈 **[Personal_trading](https://github.com/Aaryan1524/Personal_trading)** — personal trading system
+- 📊 **[NSE_sentiment_analysis](https://github.com/Aaryan1524/NSE_sentiment_analysis)** — market sentiment from NSE data
+- 🏦 **[AI-loan-Repayment](https://github.com/Aaryan1524/AI-loan-Repayment-)** — repayment modeling
+
+### Systems
+
+- 🧵 **[Concurrent-Job-Scheduler](https://github.com/Aaryan1524/Concurrent-Job-Scheduler)** — multithreaded scheduler in Java
+- ♟️ **[Chess_server](https://github.com/Aaryan1524/Chess_server)** — game server in Python
+
+### Products & Hackathons
+
+- 🎉 **[event_finder](https://github.com/Aaryan1524/event_finder)** — hyper-local event discovery for students & communities
+- 🗺️ **[StackMap](https://github.com/Aaryan1524/StackMap)** — HackPrinceton project
+- 🎓 **[Shadow](https://github.com/Aaryan1524/Shadow-PrincetonHacks-Education-Track-)** — PrincetonHacks, education track
+- 🛳️ **[cruisefrnds](https://github.com/Aaryan1524/cruisefrnds)** — TypeScript social app
+- 🏷️ **[Craigslist_redesign](https://github.com/Aaryan1524/Craigslist_redesign)** — reimagining a classic
+
+## GitHub Activity
+
+![GitHub Contribution Graph](https://gitlyy.vercel.app/api/contribution?username=Aaryan1524&hide_border=true)
 
 <p>
   <img height="160" src="https://github-readme-stats.vercel.app/api?username=Aaryan1524&show_icons=true&hide_border=true&hide_title=true&hide_rank=true&count_private=true&include_all_commits=true&title_color=A0492D&icon_color=A0492D&text_color=808080&bg_color=00000000" />
@@ -127,4 +71,52 @@ Defense, nuclear, quantum, space, AI infra. Scenario modeling over hype.
   <img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Aaryan1524&layout=compact&hide_border=true&hide_title=true&langs_count=6&title_color=A0492D&text_color=808080&bg_color=00000000" />
 </p>
 
-<sub>FIU · CS '27 &nbsp;|&nbsp; Mumbai → Miami → SF '27</sub>
+## What I'm Doing
+
+- **Building Te Vārtā** — a news engine that knows what *you* need to know, not what trends
+- **Researching AI for care** — memory-recall systems for dementia patients @ FIU
+- **Studying markets** — defense, nuclear, quantum, space, AI infra; scenario modeling over hype
+- **Shipping fast** — hackathons, prototypes, and tools that solve my own problems first
+
+<!--
+## Latest Blog Posts
+
+Uncomment when the blog is live — pair with the blog-post-workflow GitHub Action.
+<!~~ BLOG-POST-LIST:START ~~>
+- Post one
+- Post two
+<!~~ BLOG-POST-LIST:END ~~>
+-->
+
+## Connect
+
+[![Te Vārtā](https://img.shields.io/badge/-Te_Vārtā-A0492D?style=flat-square&logoColor=white)](https://tevarta.com)
+[![X](https://img.shields.io/badge/-@your__handle-1A1A18?style=flat-square&logo=x&logoColor=white)](https://twitter.com/your_handle)
+[![LinkedIn](https://img.shields.io/badge/-Aaryan_Gajula-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/your_handle)
+[![Email](https://img.shields.io/badge/-aaryangajula18@gmail.com-1A1A18?style=flat-square&logo=maildotru&logoColor=white)](mailto:aaryangajula18@gmail.com)
+[![GitHub](https://img.shields.io/badge/-Follow-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Aaryan1524)
+
+---
+
+### Recognition
+
+<!-- Placeholders — swap in real wins as they land -->
+- 🏆 Hackathon builder — HackPrinceton (StackMap), PrincetonHacks education track (Shadow)
+- 🧠 Undergraduate researcher @ FIU — AI memory-recall for dementia care, targeting UIST
+- 📌 *[Placeholder: award / feature / talk]*
+- 📌 *[Placeholder: publication / press mention]*
+
+### Philosophy
+
+> **"Deterministic where it matters, generative where it delights."** — I build systems with predictable cores and let LLMs handle the last mile. Ship beats perfect.
+
+<details>
+<summary>Random Facts</summary>
+
+- Mumbai-born, Miami-based, San Francisco-bound (2027)
+- Believes most "AI products" are prompts wearing a trench coat
+- Tracks defense, nuclear, quantum & space markets for fun
+- *[Placeholder: hobby / fun fact]*
+- *[Placeholder: hobby / fun fact]*
+
+</details>
