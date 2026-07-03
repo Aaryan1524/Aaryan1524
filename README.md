@@ -79,7 +79,6 @@ Building at the intersection of **AI, systems, and product** deterministic cores
 ### Products & Hackathons
 
 - 🎉 **[event_finder](https://github.com/Aaryan1524/event_finder)** — hyper-local event discovery for students & communities
-- 🗺️ **[StackMap](https://github.com/Aaryan1524/StackMap)** — HackPrinceton project
 - 🛳️ **[cruisefrnds](https://github.com/Aaryan1524/cruisefrnds)** — TypeScript social app
 - 🏷️ **[Craigslist_redesign](https://github.com/Aaryan1524/Craigslist_redesign)** — reimagining a classic
 
