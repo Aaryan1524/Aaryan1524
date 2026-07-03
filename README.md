@@ -45,30 +45,25 @@ Building at the intersection of **AI, systems, and product** deterministic cores
 
 ## Start Here
 
-- 📰 **[Te Vārtā](https://tevarta.com)** — personal-intelligence news engine; deterministic knowledge-graph core, LLM only at the presentation layer
+- 📰 **[Te Vārtā](https://www.tevarta.com/)** — personal-intelligence news engine; deterministic knowledge-graph core, LLM only at the presentation layer
+- 🔔 **[Claude Sentinel](https://github.com/Aaryan1524/Claude-Efficiency)** — hands-free notification system for peak Claude efficiency; knows the instant your usage window resets, even with the laptop closed
+- 🎓 **[Shadow](https://github.com/Aaryan1524/Shadow-PrincetonHacks-Education-Track-)** — PrincetonHacks, education track
 - 🧠 **Ember** — AI memory-recall for dementia care, with Dr. Chen Chen @ FIU; targeting a UIST poster
 - 🔍 **[RepoParser](https://github.com/Aaryan1524/RepoParser)** — chat with any GitHub repo; RAG over an ingested codebase
-- 🦞 **[moltbot](https://github.com/Aaryan1524/moltbot)** — your own personal AI assistant, any OS, any platform
 - 📈 **[Personal_trading](https://github.com/Aaryan1524/Personal_trading)** — scenario modeling over hype
 
 ## Current Projects
 
 ### Te Vārtā & Research
 
-- 📰 **[Te Vārtā](https://tevarta.com)** — personal-intelligence news engine
+- 📰 **[Te Vārtā](https://www.tevarta.com/)** — personal-intelligence news engine
 - 🏗️ **[TeVarta-architecture](https://github.com/Aaryan1524/TeVarta-architecture)** — system design behind the engine
 - 🧠 **Ember** — AI memory-recall research for dementia care (FIU, w/ Dr. Chen Chen)
 
 ### AI & Agents
 
 - 🔍 **[RepoParser](https://github.com/Aaryan1524/RepoParser)** — RAG tool to chat with a codebase ("explain the auth logic," "write a test for this class")
-- 🦞 **[moltbot](https://github.com/Aaryan1524/moltbot)** — personal AI assistant, the lobster way
-- 🎭 **[personaplex_ai_assistant](https://github.com/Aaryan1524/personaplex_ai_assistant)** — PersonaPlex assistant
 - ✨ **[Prompt-Perfector-AI](https://github.com/Aaryan1524/Prompt-Perfector-AI-)** — turns vague prompts into precise, optimized ones
-- ⚙️ **[gstack](https://github.com/Aaryan1524/gstack)** — Garry Tan's exact Claude Code setup: CEO, Eng Manager, Release Manager & QA in 6 tools
-- 📚 **[ai-engineering-field-guide](https://github.com/Aaryan1524/ai-engineering-field-guide)** — research into AI engineering interviews & hiring practices
-- 🧪 **[applied-ai-system-project](https://github.com/Aaryan1524/applied-ai-system-project)** — applied AI systems coursework project
-- ⚡ **[Claude-Efficiency](https://github.com/Aaryan1524/Claude-Efficiency)** — getting more out of Claude
 
 ### Markets & Trading
 
@@ -85,7 +80,6 @@ Building at the intersection of **AI, systems, and product** deterministic cores
 
 - 🎉 **[event_finder](https://github.com/Aaryan1524/event_finder)** — hyper-local event discovery for students & communities
 - 🗺️ **[StackMap](https://github.com/Aaryan1524/StackMap)** — HackPrinceton project
-- 🎓 **[Shadow](https://github.com/Aaryan1524/Shadow-PrincetonHacks-Education-Track-)** — PrincetonHacks, education track
 - 🛳️ **[cruisefrnds](https://github.com/Aaryan1524/cruisefrnds)** — TypeScript social app
 - 🏷️ **[Craigslist_redesign](https://github.com/Aaryan1524/Craigslist_redesign)** — reimagining a classic
 
@@ -118,11 +112,11 @@ Uncomment when the blog is live — pair with the blog-post-workflow GitHub Acti
 
 ## Connect
 
-[![Te Vārtā](https://img.shields.io/badge/-Te_Vārtā-A0492D?style=flat-square&logoColor=white)](https://tevarta.com)
-[![X](https://img.shields.io/badge/-@your__handle-1A1A18?style=flat-square&logo=x&logoColor=white)](https://twitter.com/your_handle)
-[![LinkedIn](https://img.shields.io/badge/-Aaryan_Gajula-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/your_handle)
-[![Email](https://img.shields.io/badge/-aaryangajula18@gmail.com-1A1A18?style=flat-square&logo=maildotru&logoColor=white)](mailto:aaryangajula18@gmail.com)
-[![GitHub](https://img.shields.io/badge/-Follow-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Aaryan1524)
+[![Te Vārtā](https://img.shields.io/badge/-Te_Vārtā-A0492D?style=flat-square&logoColor=white)](https://www.tevarta.com)
+[![X](https://img.shields.io/badge/-@your__handle-1A1A18?style=flat-square&logo=x&logoColor=white)](https://x.com/aaryangajulaa)
+[![LinkedIn](https://img.shields.io/badge/-Aaryan_Gajula-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aaryangajula)
+[![Email](https://img.shields.io/badge/-aaryangajula18@gmail.com-1A1A18?style=flat-square&logo=maildotru&logoColor=white)](mailto:aaryangajula17@gmail.com)
+[![GitHub](https://img.shields.io/badge/-Follow-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Aaryan1524) 
 
 ---
 
