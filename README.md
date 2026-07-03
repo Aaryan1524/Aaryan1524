@@ -112,8 +112,8 @@ Uncomment when the blog is live — pair with the blog-post-workflow GitHub Acti
 ## Connect
 
 [![Te Vārtā](https://img.shields.io/badge/-Te_Vārtā-A0492D?style=flat-square&logoColor=white)](https://www.tevarta.com)
-[![X](https://img.shields.io/badge/-@your__handle-1A1A18?style=flat-square&logo=x&logoColor=white)](https://x.com/aaryangajulaa)
-[![LinkedIn](https://img.shields.io/badge/-Aaryan_Gajula-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aaryangajula)
+[![X](https://img.shields.io/badge/-X-1A1A18?style=flat-square&logo=x&logoColor=white)](https://x.com/aaryangajulaa)
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aaryangajula)
 [![Email](https://img.shields.io/badge/-aaryangajula18@gmail.com-1A1A18?style=flat-square&logo=maildotru&logoColor=white)](mailto:aaryangajula17@gmail.com)
 [![GitHub](https://img.shields.io/badge/-Follow-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Aaryan1524) 
 
