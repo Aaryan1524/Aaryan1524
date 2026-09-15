@@ -1,0 +1,128 @@
+# Evidence rules for the "Shipped, end to end" table.
+#
+# A cell is filled by the most specific rule that matches, where "matches"
+# means a token was found in a dependency manifest or a path was found in the
+# repo's file tree. Rules are evaluated top to bottom inside each layer and the
+# first hit wins, so order these from most specific to least.
+#
+#   label     what the cell prints
+#   manifest  substring searched for in any manifest listed under `manifests`
+#   path      glob matched against the repo file tree
+#   requires  extra glob that must also be present for the rule to fire
+
+manifests:
+  - requirements.txt
+  - requirements-dev.txt
+  - pyproject.toml
+  - Pipfile
+  - setup.py
+  - package.json
+  - pom.xml
+  - build.gradle
+  - build.gradle.kts
+  - Package.swift
+  - Podfile
+  - Cargo.toml
+  - go.mod
+
+layers:
+  Interface:
+    - {label: "Next.js",   manifest: "\"next\""}
+    - {label: "React",     manifest: "react-dom"}
+    - {label: "React",     manifest: "\"react\""}
+    - {label: "Vue",       manifest: "\"vue\""}
+    - {label: "Svelte",    manifest: "svelte"}
+    - {label: "iOS",       path: "**/*.swift", requires_any: ["**/*.xcodeproj/**", "Package.swift", "**/*.xcworkspace/**"]}
+    - {label: "Blazor",    path: "**/*.razor"}
+    - {label: "Streamlit", manifest: "streamlit"}
+    - {label: "Gradio",    manifest: "gradio"}
+    - {label: "Tauri",     manifest: "@tauri-apps"}
+    - {label: "Electron",  manifest: "\"electron\""}
+    - {label: "HTML",      path: "index.html"}
+    - {label: "CLI",       manifest: "typer"}
+    - {label: "CLI",       manifest: "\"clap\""}
+
+  API:
+    - {label: "FastAPI",     manifest: "fastapi"}
+    - {label: "Flask",       manifest: "flask"}
+    - {label: "Django",      manifest: "django"}
+    - {label: "ASP.NET",     manifest: "Microsoft.AspNetCore"}
+    - {label: "Spring Boot", manifest: "spring-boot-starter-web"}
+    - {label: "Express",     manifest: "\"express\""}
+    - {label: "Fastify",     manifest: "\"fastify\""}
+    - {label: "Next API",    path: "**/app/api/**/route.ts"}
+    - {label: "WebSockets",  manifest: "websockets"}
+    - {label: "Actix",       manifest: "actix-web"}
+    - {label: "Axum",        manifest: "\"axum\""}
+    - {label: "Sockets",     path: "**/socket*.py"}
+
+  Data:
+    - {label: "Neo4j",      manifest: "neo4j"}
+    - {label: "pgvector",   manifest: "pgvector"}
+    - {label: "Supabase",   manifest: "supabase"}
+    - {label: "Postgres",   manifest: "psycopg"}
+    - {label: "Postgres",   manifest: "asyncpg"}
+    - {label: "Postgres",   manifest: "\"pg\""}
+    - {label: "Prisma",     manifest: "prisma"}
+    - {label: "SQLAlchemy", manifest: "sqlalchemy"}
+    - {label: "Kafka",      manifest: "kafka-python"}
+    - {label: "Kafka",      manifest: "confluent-kafka"}
+    - {label: "Redis",      manifest: "redis"}
+    - {label: "MongoDB",    manifest: "pymongo"}
+    - {label: "MongoDB",    manifest: "mongoose"}
+    - {label: "ChromaDB",   manifest: "chromadb"}
+    - {label: "FAISS",      manifest: "faiss"}
+    - {label: "SQLite",     manifest: "sqlite"}
+    - {label: "Schema",     path: "**/schema.sql"}
+    - {label: "Migrations", path: "**/migrations/**"}
+    - {label: "SQLite",     path: "**/*.db"}
+
+  AI:
+    - {label: "Claude API",  manifest: "anthropic"}
+    - {label: "Azure OpenAI", manifest: "Azure.AI.OpenAI"}
+    - {label: "OpenAI",      manifest: "openai"}
+    - {label: "Gemini",      manifest: "google-genai"}
+    - {label: "Gemini",      manifest: "google-generativeai"}
+    - {label: "LangChain",   manifest: "langchain"}
+    - {label: "LlamaIndex",  manifest: "llama-index"}
+    - {label: "Transformers", manifest: "transformers"}
+    - {label: "Embeddings",  manifest: "sentence-transformers"}
+    - {label: "spaCy",       manifest: "spacy"}
+    - {label: "Ollama",      manifest: "ollama"}
+    - {label: "scikit-learn", manifest: "scikit-learn"}
+    - {label: "PyTorch",     manifest: "torch"}
+
+  Deploy:
+    - {label: "Docker",     path: "**/docker-compose.yml"}
+    - {label: "Docker",     path: "**/docker-compose.yaml"}
+    - {label: "Docker",     path: "**/Dockerfile"}
+    - {label: "Vercel",     path: "vercel.json"}
+    - {label: "Netlify",    path: "netlify.toml"}
+    - {label: "Fly.io",     path: "fly.toml"}
+    - {label: "Render",     path: "render.yaml"}
+    - {label: "Heroku",     path: "Procfile"}
+    - {label: "Serverless", path: "serverless.yml"}
+    - {label: "Terraform",  path: "**/*.tf"}
+    - {label: "CDK",        path: "**/cdk.json"}
+    - {label: "launchd",    path: "**/launchd/*.plist"}
+    - {label: "launchd",    path: "**/LaunchAgents/*.plist"}
+    - {label: "launchd",    path: "**/com.*.plist"}
+    - {label: "systemd",    path: "**/*.service"}
+    - {label: "Installer",  path: "install.sh"}
+    - {label: "Actions",    path: ".github/workflows/*.yml"}
+    - {label: "Actions",    path: ".github/workflows/*.yaml"}
+
+# Paths whose first appearance in history marks "shipped" for the
+# Idea -> shipped column. A release or tag counts too, whichever came first.
+deploy_evidence:
+  - Dockerfile
+  - docker-compose.yml
+  - docker-compose.yaml
+  - vercel.json
+  - netlify.toml
+  - fly.toml
+  - render.yaml
+  - Procfile
+  - serverless.yml
+  - install.sh
+  - .github/workflows

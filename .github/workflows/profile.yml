@@ -1,0 +1,54 @@
+name: profile
+
+on:
+  schedule:
+    - cron: "0 4 * * *"          # nightly, 04:00 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - projects.yml
+      - detect_rules.yml
+      - scripts/**
+      - .github/workflows/profile.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile
+  cancel-in-progress: true
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install pyyaml
+
+      - name: Build
+        env:
+          # Read-only fine-grained PAT so private repos can be scanned. The
+          # default GITHUB_TOKEN only sees this repo.
+          PROFILE_SCAN_TOKEN: ${{ secrets.PROFILE_SCAN_TOKEN || github.token }}
+        run: python scripts/build.py
+
+      - name: Check every README link resolves
+        run: python scripts/check_links.py
+
+      - name: Commit if the output changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A README.md assets scan-report.md
+          if git diff --cached --quiet; then
+            echo "No change."
+          else
+            git commit -m "chore(profile): nightly rebuild"
+            git push
+          fi

@@ -1,0 +1,178 @@
+# Single source of truth for the profile page.
+#
+# Only repos listed here appear in README.md. Forks, class starters and
+# experiments stay off the page unless they are added below.
+# Every `line:` is Aaryan's own wording. The build script never generates one.
+
+owner: Aaryan1524
+
+# --- build behaviour -------------------------------------------------------
+settings:
+  # A repo with no push in this many days moves into the collapsed Archive
+  # block at the end of the Work section. Nothing is hidden, the page is short.
+  archive_after_days: 365
+  # detected  -> cells come from the code scan, † marks manual overrides
+  # declared  -> cells come from `declared:` below, scan only cross-checks
+  table_mode: detected
+  # Only repos with real deploy history appear in the table, so the
+  # "Idea -> shipped" column never renders a row of dashes. Set false to list
+  # every in_matrix repo and show an em dash where nothing shipped.
+  matrix_requires_deploy: true
+
+# --- sphere labels ---------------------------------------------------------
+# Only things Aaryan will defend in an interview. Order is the order they
+# attach to points on the sphere.
+skills:
+  - Python
+  - FastAPI
+  - TypeScript
+  - React
+  - Next.js
+  - Neo4j
+  - PostgreSQL
+  - Docker
+  - Java
+  - C# / .NET
+  - spaCy
+  - Claude API
+
+# --- flagships -------------------------------------------------------------
+flagships:
+  - key: te-varta
+    title: Te Vārtā
+    repo: Aaryan1524/TeVarta      # private
+    url: https://www.tevarta.com
+    blurb: >-
+      A personal-intelligence news engine. You state your priorities and the
+      relevant news finds you. Deterministic Neo4j knowledge-graph core, an LLM
+      only at the presentation layer, plus an iOS client.
+  - key: ember
+    title: Ember
+    repo: null                     # research code, not public
+    url: null
+    blurb: >-
+      AI memory recall for dementia care. Undergraduate research at FIU with
+      Dr. Chen Chen. A UIST poster is in progress.
+
+# --- repo listing ----------------------------------------------------------
+# Order of groups here is the order on the page.
+groups:
+  - name: Tools and agents
+    repos:
+      - repo: Aaryan1524/ClaudeSentinel
+        title: Claude Sentinel
+        line: "knows the instant your Claude usage window resets, even with the laptop closed"
+        in_matrix: true
+      - repo: Aaryan1524/ReccursiveCommits
+        title: Recursive Commits
+        line: "an offline-first CLI for safely scheduling verified software changes across Git repositories"
+        in_matrix: true
+      - repo: Aaryan1524/RepoParser
+        title: RepoParser
+        line: "chat with any GitHub repo; RAG over an ingested codebase"
+        in_matrix: true
+      - repo: Aaryan1524/Prompt-Perfector-AI-
+        title: Prompt Perfector
+        line: "turns vague prompts into precise, optimized ones"
+        in_matrix: true
+      - repo: Aaryan1524/AgentSentinel
+        title: Agent Sentinel
+        line: ""
+        in_matrix: false
+      - repo: Aaryan1524/Codex_Skills
+        title: Codex Skills
+        line: ""
+        in_matrix: false
+
+  - name: Markets
+    repos:
+      - repo: Aaryan1524/Personal_trading
+        title: Personal trading
+        line: "scenario modeling over hype"
+        in_matrix: true
+      - repo: Aaryan1524/NSE_sentiment_analysis
+        title: NSE sentiment analysis
+        line: "market sentiment from NSE data"
+        in_matrix: true
+      - repo: Aaryan1524/AI-loan-Repayment-
+        title: AI loan repayment
+        line: "repayment modeling"
+        in_matrix: false
+
+  - name: Systems
+    repos:
+      - repo: Aaryan1524/Concurrent-Job-Scheduler
+        title: Concurrent Job Scheduler
+        line: "a multithreaded scheduler in Java"
+        in_matrix: false
+      - repo: Aaryan1524/Chess_server
+        title: Chess server
+        line: "a game server in Python"
+        in_matrix: false
+      - repo: Aaryan1524/TeVarta-architecture
+        title: Te Vārtā architecture
+        line: "the system design behind the engine"
+        in_matrix: false
+
+  - name: Products and hackathons
+    repos:
+      - repo: Aaryan1524/Shadow-PrincetonHacks-Education-Track-
+        title: Shadow
+        line: "a Meta smart-glasses coach that watches a physical skill and gives live feedback"
+        in_matrix: true
+      - repo: Aaryan1524/event_finder
+        title: event_finder
+        line: "hyper-local event discovery, from house parties and pickup games to academic workshops"
+        in_matrix: true
+      - repo: Aaryan1524/Bosnai
+        title: Bosnai
+        line: ""
+        in_matrix: false
+      - repo: Aaryan1524/StackMap
+        title: StackMap
+        line: ""
+        in_matrix: false
+      - repo: Aaryan1524/cruisefrnds
+        title: cruisefrnds
+        line: ""
+        in_matrix: false
+      - repo: Aaryan1524/Desktop-Pet
+        title: Desktop Pet
+        line: ""
+        in_matrix: false
+      - repo: Aaryan1524/305Gemma-efficiencyproj
+        title: 305 Gemma efficiency
+        line: ""
+        in_matrix: false
+      - repo: Aaryan1524/Craigslist_redesign
+        title: Craigslist redesign
+        line: "reimagining a classic"
+        in_matrix: false
+
+# --- chat card -------------------------------------------------------------
+# Tags must be things Aaryan will defend. Three audiences, one 18s loop.
+card:
+  - audience: if you are hiring
+    question: Can you ship a feature end to end?
+    reply: Yes. Here is the stack.
+    tags: [Python, FastAPI, React, PostgreSQL, "C# / .NET", Docker]
+  - audience: if you are investing
+    question: What are you building?
+    reply: "Te Vārtā: news that finds you."
+    tags: [Te Vārtā, Knowledge graph, iOS app, tevarta.com]
+  - audience: if you build things
+    question: What is under the hood?
+    reply: Deterministic core, LLM at the edge.
+    tags: [Neo4j, RAG pipelines, spaCy, Claude API, Docker]
+
+# --- footer ----------------------------------------------------------------
+links:
+  site: https://www.tevarta.com
+  x: https://x.com/aaryangajulaa
+  linkedin: https://www.linkedin.com/in/aaryangajula
+  email: aaryangajula17@gmail.com
+
+# Plain-text stack line. Searchable and screen-readable, unlike the SVG.
+stack_line: >-
+  Python · FastAPI · TypeScript · React · Next.js · Java · C# / .NET ·
+  Neo4j · PostgreSQL · Supabase · pgvector · spaCy · Claude API · Docker · AWS

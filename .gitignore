@@ -1,0 +1,6 @@
+# Working notes for the rebuild. Not for the public repo.
+github-profile-context.md
+
+# Python bytecode from local build runs.
+__pycache__/
+*.pyc
