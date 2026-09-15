@@ -77,12 +77,47 @@ def manifests(owner_repo: str, paths: list[str], ref: str, rules: dict) -> dict[
     return found
 
 
-def detect(paths: list[str], manifest_text: dict[str, str], rules: dict) -> dict:
-    """Run the layer rules. Returns {layer: {"label", "evidence"}}."""
+def source_text(owner_repo: str, paths: list[str], ref: str,
+                rules: dict) -> dict[str, str]:
+    """A bounded sample of the repo's own source, for the source rules.
+
+    Reading source costs one API call per file, so this caps both the count and
+    the total bytes. Paths are already sorted, which keeps two runs over an
+    unchanged repo reading exactly the same files.
+    """
+    limits = rules.get("source_scan", {})
+    globs = limits.get("globs", [])
+    max_files = int(limits.get("max_files", 12))
+    max_bytes = int(limits.get("max_bytes", 200_000))
+
+    found: dict[str, str] = {}
+    total = 0
+    for path in paths:
+        if len(found) >= max_files or total >= max_bytes:
+            break
+        name = path.rsplit("/", 1)[-1]
+        if not any(fnmatch.fnmatch(name, g) for g in globs):
+            continue
+        text = ghapi.file_text(owner_repo, path, ref)
+        if text:
+            found[path] = text
+            total += len(text)
+    return found
+
+
+def detect(paths: list[str], manifest_text: dict[str, str], rules: dict,
+           read_source=None) -> dict:
+    """Run the layer rules. Returns {layer: {"label", "evidence"}}.
+
+    Manifest and path rules run first. Source rules run only for layers still
+    empty afterwards, so a repo that declares its stack never pays for them.
+    """
     result: dict[str, dict | None] = {}
     for layer in LAYERS:
         result[layer] = None
         for rule in rules["layers"].get(layer, []):
+            if rule.get("source"):
+                continue
             token = rule.get("manifest")
             if token:
                 for path in sorted(manifest_text):
@@ -98,6 +133,21 @@ def detect(paths: list[str], manifest_text: dict[str, str], rules: dict) -> dict
                     result[layer] = {"label": rule["label"], "evidence": hit}
             if result[layer]:
                 break
+
+    gaps = [layer for layer in LAYERS if not result[layer]
+            and any(r.get("source") for r in rules["layers"].get(layer, []))]
+    if gaps and read_source is not None:
+        sources = read_source()
+        for layer in gaps:
+            for rule in rules["layers"].get(layer, []):
+                if not rule.get("source"):
+                    continue
+                for path in sorted(sources):
+                    if rule["source"].lower() in sources[path].lower():
+                        result[layer] = {"label": rule["label"], "evidence": path}
+                        break
+                if result[layer]:
+                    break
     return result
 
 
@@ -162,7 +212,10 @@ def scan_repo(entry: dict, rules: dict, want_matrix: bool) -> dict:
 
     if want_matrix:
         text = manifests(owner_repo, paths, meta["default_branch"], rules)
-        meta["detected"] = detect(paths, text, rules)
+        meta["detected"] = detect(
+            paths, text, rules,
+            read_source=lambda: source_text(
+                owner_repo, paths, meta["default_branch"], rules))
         meta["shipped_days"] = shipped_days(
             owner_repo, rules, meta["created_at"], paths)
     else:

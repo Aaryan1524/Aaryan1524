@@ -34,12 +34,17 @@ def token(required: bool = True) -> str:
 def _request(path: str, accept: str = "application/vnd.github+json"):
     """GET path, returning (payload, headers). None payload means 404."""
     url = path if path.startswith("http") else f"{API}{path}"
-    req = urllib.request.Request(url, headers={
+    headers = {
         "Accept": accept,
-        "Authorization": f"Bearer {token()}",
         "X-GitHub-Api-Version": "2022-11-28",
         "User-Agent": "aaryan1524-profile-build",
-    })
+    }
+    # Public repos remain useful without a local credential. The profile build
+    # still fails for a configured private repo, rather than silently omitting
+    # its evidence, so scheduled builds must retain PROFILE_SCAN_TOKEN.
+    if auth := token(required=False):
+        headers["Authorization"] = f"Bearer {auth}"
+    req = urllib.request.Request(url, headers=headers)
     for attempt in range(4):
         try:
             with urllib.request.urlopen(req, timeout=30) as resp:

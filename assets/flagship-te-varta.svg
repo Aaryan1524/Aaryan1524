@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 260" width="380" height="260" role="img">
+<rect width="380" height="260" rx="14" fill="#1b1a18"/>
+<text x="24" y="34" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11" fill="#8f887c">flagship · founder</text>
+<text x="356" y="34" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11" fill="#8f887c">01</text>
+<text x="24" y="92" font-family="Newsreader, Georgia, serif" font-size="38" fill="#e9e3d6">Te Vārtā</text>
+<text x="24" y="120" font-family="Newsreader, Georgia, serif" font-style="italic" font-size="17" fill="#a8a193">News that finds you.</text>
+<line x1="24" y1="142" x2="356" y2="142" stroke="#3a3833"/>
+<text x="24" y="170" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11" fill="#8f887c">core</text><text x="92" y="170" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" fill="#e9e3d6">Neo4j knowledge graph</text>
+<text x="24" y="193" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11" fill="#8f887c">model</text><text x="92" y="193" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" fill="#e9e3d6">LLM at the surface only</text>
+<text x="24" y="216" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11" fill="#8f887c">client</text><text x="92" y="216" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="13" fill="#e9e3d6">iOS app</text>
+<text x="356" y="240" text-anchor="end" font-family="JetBrains Mono, ui-monospace, monospace" font-size="12" fill="#e9e3d6">tevarta.com ↗</text>
+</svg>

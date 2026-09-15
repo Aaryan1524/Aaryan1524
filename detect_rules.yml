@@ -8,7 +8,26 @@
 #   label     what the cell prints
 #   manifest  substring searched for in any manifest listed under `manifests`
 #   path      glob matched against the repo file tree
+#   source    substring searched for in the repo's own source files
 #   requires  extra glob that must also be present for the rule to fire
+#
+# `source` rules run only for layers still empty after the manifest and path
+# rules, because reading source costs an API call per file. A single-file tool
+# with no dependency manifest is invisible otherwise.
+
+# Bounds on the source pass. Files are read in sorted order so two runs over
+# an unchanged repo always read the same files.
+source_scan:
+  max_files: 12
+  max_bytes: 200000
+  globs:
+    - "*.py"
+    - "*.js"
+    - "*.ts"
+    - "*.rs"
+    - "*.go"
+    - "*.java"
+    - "*.swift"
 
 manifests:
   - requirements.txt
@@ -41,6 +60,9 @@ layers:
     - {label: "HTML",      path: "index.html"}
     - {label: "CLI",       manifest: "typer"}
     - {label: "CLI",       manifest: "\"clap\""}
+    - {label: "CLI",       source: "import argparse"}
+    - {label: "CLI",       source: "from argparse"}
+    - {label: "CLI",       source: "import click"}
 
   API:
     - {label: "FastAPI",     manifest: "fastapi"}
@@ -76,6 +98,8 @@ layers:
     - {label: "Schema",     path: "**/schema.sql"}
     - {label: "Migrations", path: "**/migrations/**"}
     - {label: "SQLite",     path: "**/*.db"}
+    - {label: "JSON state", source: "state.json"}
+    - {label: "SQLite",     source: "import sqlite3"}
 
   AI:
     - {label: "Claude API",  manifest: "anthropic"}

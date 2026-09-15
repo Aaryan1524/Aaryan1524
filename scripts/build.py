@@ -17,7 +17,9 @@ from pathlib import Path
 import yaml
 
 import render_card
+import render_flagship
 import render_readme
+import render_row
 import render_sphere
 import scan
 
@@ -89,6 +91,7 @@ def scan_report(entries: list[dict], scanned: dict, conflicts: list[str],
 def write(path: Path, text: str, changed: list[str]) -> None:
     current = path.read_text() if path.exists() else None
     if current != text:
+        path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(text)
         changed.append(str(path.relative_to(ROOT)))
 
@@ -101,7 +104,6 @@ def main() -> int:
 
     owner = config["owner"]
     settings = config.get("settings", {})
-    archive_days = int(settings.get("archive_after_days", 180))
     declared_mode = settings.get("table_mode") == "declared"
 
     entries = [e for group in config["groups"] for e in group["repos"]]
@@ -112,10 +114,18 @@ def main() -> int:
 
     scanned: dict[str, dict] = {}
     conflicts: list[str] = []
+    selected = [entry for entry in entries if entry.get("selected")]
+    if len(selected) > 6:
+        raise SystemExit("At most six repos may be marked selected: true.")
+    for entry in selected:
+        if not " ".join((entry.get("line") or "").split()):
+            raise SystemExit(f"Selected repo needs a description: {entry['repo']}")
+
     for entry in flag_entries + entries:
         if entry["repo"] in scanned:
             continue
-        meta = scan.scan_repo(entry, rules, bool(entry.get("in_matrix")))
+        needs_detection = bool(entry.get("in_matrix") or entry.get("selected"))
+        meta = scan.scan_repo(entry, rules, needs_detection)
         if not meta.get("missing"):
             # A declared value always wins. Disagreements go to the report,
             # never to the page.
@@ -132,6 +142,12 @@ def main() -> int:
                         meta["detected"][layer] = None
         scanned[entry["repo"]] = meta
 
+    for flag in config["flagships"]:
+        if flag.get("repo") and scanned[flag["repo"]].get("missing"):
+            raise SystemExit(
+                f"Flagship scan unavailable: {flag['repo']}. "
+                "Set PROFILE_SCAN_TOKEN with access to the private repo.")
+
     version = version_string(entries, scanned, owner, now)
     changed: list[str] = []
 
@@ -140,30 +156,52 @@ def main() -> int:
     card = render_card.render(config.get("card", []))
     write(ROOT / "assets" / "sphere.svg", sphere, changed)
     write(ROOT / "assets" / "card.svg", card, changed)
+    for number, flag in enumerate(config["flagships"], start=1):
+        write(ROOT / "assets" / f"flagship-{flag['key']}.svg",
+              render_flagship.render(flag, number), changed)
 
-    needs_deploy = bool(settings.get("matrix_requires_deploy"))
     matrix_rows = [
         (entry, scanned[entry["repo"]])
         for entry in flag_entries + entries
         if entry.get("in_matrix")
         and not scanned[entry["repo"]].get("missing")
-        and (not needs_deploy
-             or scanned[entry["repo"]].get("shipped_days") is not None)
     ]
+    # Evidence is intentionally narrow: rows need at least three real or
+    # explicitly declared layers to make an end-to-end claim.
+    matrix_rows = [row for row in matrix_rows if sum(
+        bool(row[1]["detected"].get(layer)) for layer in scan.LAYERS) >= 3]
     # Most recently pushed first, so the table opens on current work.
     matrix_rows.sort(key=lambda row: row[1]["pushed_at"] or now, reverse=True)
+
+    selected_rows = []
+    for entry in selected:
+        meta = scanned[entry["repo"]]
+        if meta.get("missing"):
+            raise SystemExit(f"Selected repo scan unavailable: {entry['repo']}")
+        if not meta.get("language"):
+            raise SystemExit(f"Selected repo needs a detected language: {entry['repo']}")
+        meta["age_days"] = ((now - meta["pushed_at"]).days
+                            if meta.get("pushed_at") else None)
+        slug = render_row.slug(entry["title"])
+        row_svg = render_row.render(
+            entry["title"], entry["line"], meta,
+            set((entry.get("declared") or {}).keys()))
+        write(ROOT / "assets" / "rows" / f"{slug}.svg", row_svg, changed)
+        selected_rows.append((entry, meta, slug, render_row.alt_text(
+            entry["title"], entry["line"], meta)))
 
     readme = (ROOT / "README.md").read_text()
     readme = render_readme.splice(readme, "HERO", render_readme.hero_block(
         html.escape(render_sphere.alt_text(skills), quote=True),
         html.escape(render_card.alt_text(config.get("card", [])), quote=True)))
     readme = render_readme.splice(readme, "FLAGSHIPS",
-                                  render_readme.flagships_block(
-                                      config["flagships"], scanned))
+                                  render_readme.flagships_block(config["flagships"]))
+    readme = render_readme.splice(readme, "SELECTED",
+                                  render_readme.selected_block(selected_rows))
+    readme = render_readme.splice(readme, "REPOS", render_readme.repos_block(
+        config["groups"], scanned, now))
     readme = render_readme.splice(readme, "MATRIX",
                                   render_readme.matrix_block(matrix_rows, now))
-    readme = render_readme.splice(readme, "REPOS", render_readme.repos_block(
-        config["groups"], scanned, archive_days, now))
     readme = render_readme.splice(readme, "FOOTER",
                                   render_readme.footer_block(
                                       config.get("stack_line", ""),

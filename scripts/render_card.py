@@ -1,7 +1,13 @@
 """assets/card.svg -- the chat card that answers whoever is reading.
 
 Three audiences share one 18 second loop, mirroring the onboarding card on
-tevarta.com. Group one is opaque at rest so the still frame reads correctly.
+tevarta.com. Slides fade fully out before the next fades in, so two answers are
+never on screen together. Each answer is revealed by animating the width of its
+own clip rect, which reads as the line typing itself in.
+
+GitHub renders SVG as an image, so the motion is SMIL and the still frame has
+to stand on its own: slide one's base attributes are its settled state, and the
+other two start hidden.
 """
 
 from __future__ import annotations
@@ -12,89 +18,142 @@ BG = "#1b1a18"
 CREAM = "#e9e3d6"
 SERIF_2 = "#a8a193"
 MUTED = "#8f887c"
-FIELD = "#232220"
-FIELD_STROKE = "#34322e"
-TAG_STROKE = "#3a3833"
+BUBBLE = "#2a2926"
+STROKE = "#3a3833"
 TAG_TEXT = "#cfc8ba"
 
 SERIF = "Newsreader, Georgia, serif"
 MONO = "JetBrains Mono, ui-monospace, monospace"
+SANS = "system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
 
-W, H = 640, 220
+W, H = 760, 250
 DUR = "18s"
+BUDGET = 150 * 1024
+RIGHT = 728          # right edge of the question bubble
+CLIP_X, CLIP_Y, CLIP_H = 84, 136, 44
+CLIP_W = 660
 
-# Each group holds the stage for about a third of the loop, with a short
-# crossfade between them. Values and keyTimes come in pairs.
-CYCLE = [
-    ("1;1;0;0;1", "0;0.305;0.333;0.972;1"),
-    ("0;0;1;1;0;0", "0;0.305;0.333;0.638;0.666;1"),
-    ("0;0;1;1;0", "0;0.638;0.666;0.972;1"),
+# Per slide: when the group is visible, when the answer types in, and when the
+# tags appear. Values and keyTimes always come in pairs.
+TIMING = [
+    {
+        "group": ("0;1;1;0;0", "0;0.03;0.303;0.333;1"),
+        "clip": ("0;0;660;660", "0;0.04;0.10;1"),
+        "tags": ("0;0;1;1", "0;0.10;0.13;1"),
+    },
+    {
+        "group": ("0;0;1;1;0;0", "0;0.333;0.363;0.636;0.666;1"),
+        "clip": ("0;0;660;660", "0;0.373;0.433;1"),
+        "tags": ("0;0;1;1", "0;0.433;0.463;1"),
+    },
+    {
+        "group": ("0;0;1;1;0", "0;0.666;0.696;0.97;1"),
+        "clip": ("0;0;660;660", "0;0.706;0.766;1"),
+        "tags": ("0;0;1;1", "0;0.766;0.796;1"),
+    },
 ]
 
 
-def _avatar(cx: int, cy: int) -> str:
-    return (f'<circle cx="{cx}" cy="{cy}" r="14" fill="{CREAM}"/>'
-            f'<text x="{cx}" y="{cy + 4}" text-anchor="middle" '
-            f'font-family="{SERIF}" font-size="12" fill="{BG}">AG</text>')
+def _animate(attr: str, values: str, key_times: str) -> str:
+    return (f'<animate attributeName="{attr}" values="{values}" '
+            f'keyTimes="{key_times}" dur="{DUR}" repeatCount="indefinite"/>')
 
 
-def _tags(tags: list[str], x0: int, y: int) -> str:
+def _bubble_width(text: str) -> float:
+    return len(text) * 8.2 + 36
+
+
+def _tag_width(text: str) -> float:
+    return len(text) * 7.3 + 24
+
+
+def _progress(index: int) -> str:
     out = []
-    x = x0
+    for slot, x in enumerate((664, 688, 712)):
+        fill = CREAM if slot == index else STROKE
+        out.append(f'<rect x="{x}" y="33" width="18" height="2" fill="{fill}"/>')
+    return "".join(out)
+
+
+def _tags(tags: list[str]) -> str:
+    out = []
+    x = 84.0
     for tag in tags:
-        width = round(len(tag) * 6.7 + 22)
-        if x + width > W - 20:  # wrap rather than run off the plate
-            x = x0
-            y += 28
+        width = _tag_width(tag)
         out.append(
-            f'<rect x="{x}" y="{y}" width="{width}" height="22" rx="11" '
-            f'fill="none" stroke="{TAG_STROKE}"/>'
-            f'<text x="{x + width / 2:.0f}" y="{y + 15}" text-anchor="middle" '
-            f'font-family="{MONO}" font-size="11" fill="{TAG_TEXT}">'
+            f'<rect x="{x:.0f}" y="194" width="{width:.0f}" height="28" '
+            f'rx="14" fill="none" stroke="{STROKE}"/>'
+            f'<text x="{x + width / 2:.0f}" y="212" text-anchor="middle" '
+            f'font-family="{MONO}" font-size="12" fill="{TAG_TEXT}">'
             f'{escape(tag)}</text>'
         )
         x += width + 8
     return "".join(out)
 
 
-def _group(entry: dict, values: str, key_times: str, rest: str) -> str:
+def _slide(index: int, entry: dict) -> str:
+    timing = TIMING[index]
+    first = index == 0
+    clip_id = f"type{index}"
+
+    question = entry["question"]
+    bubble_w = _bubble_width(question)
+    bubble_x = RIGHT - bubble_w
+
+    group_values, group_times = timing["group"]
+    clip_values, clip_times = timing["clip"]
+    tag_values, tag_times = timing["tags"]
+
     return (
-        f'<g opacity="{rest}">'
-        f'<animate attributeName="opacity" values="{values}" '
-        f'keyTimes="{key_times}" dur="{DUR}" repeatCount="indefinite"/>'
-        f'<text x="20" y="26" font-family="{MONO}" font-size="11" fill="{MUTED}">'
-        f'{escape(entry["audience"])}</text>'
-        + _avatar(34, 58) +
-        f'<text x="58" y="63" font-family="{SERIF}" font-style="italic" '
-        f'font-size="15" fill="{SERIF_2}">What brings you here?</text>'
-        f'<rect x="20" y="80" width="600" height="34" rx="8" fill="{FIELD}" '
-        f'stroke="{FIELD_STROKE}"/>'
-        f'<text x="36" y="102" font-family="{SERIF}" font-size="14" '
-        f'fill="{CREAM}">{escape(entry["question"])}</text>'
-        + _avatar(34, 140) +
-        f'<text x="58" y="145" font-family="{SERIF}" font-size="15" '
-        f'fill="{CREAM}">{escape(entry["reply"])}</text>'
-        + _tags(entry["tags"], 20, 168) +
-        '</g>'
+        f'<clipPath id="{clip_id}">'
+        f'<rect x="{CLIP_X}" y="{CLIP_Y}" width="{CLIP_W if first else 0}" '
+        f'height="{CLIP_H}">{_animate("width", clip_values, clip_times)}</rect>'
+        f'</clipPath>'
+        f'<g opacity="{1 if first else 0}">'
+        + _animate("opacity", group_values, group_times) +
+        f'<text x="32" y="38" font-family="{MONO}" font-size="12" '
+        f'fill="{MUTED}">{escape(entry["audience"])}</text>'
+        + _progress(index) +
+        f'<text x="{RIGHT}" y="72" text-anchor="end" font-family="{MONO}" '
+        f'font-size="11" fill="{MUTED}">you</text>'
+        f'<rect x="{bubble_x:.0f}" y="82" width="{bubble_w:.0f}" height="40" '
+        f'rx="20" fill="{BUBBLE}" stroke="{STROKE}"/>'
+        f'<text x="{bubble_x + 18:.0f}" y="108" font-family="{SANS}" '
+        f'font-size="16" fill="{CREAM}">{escape(question)}</text>'
+        f'<circle cx="52" cy="160" r="18" fill="{CREAM}"/>'
+        f'<text x="52" y="165" text-anchor="middle" font-family="{SERIF}" '
+        f'font-size="14" fill="{BG}">AG</text>'
+        f'<g clip-path="url(#{clip_id})">'
+        f'<text x="84" y="168" font-family="{SERIF}" font-size="22" '
+        f'fill="{CREAM}">{escape(entry["answer"])}</text></g>'
+        f'<g opacity="{1 if first else 0}">'
+        + _animate("opacity", tag_values, tag_times)
+        + _tags(entry["tags"]) +
+        '</g></g>'
     )
 
 
 def render(entries: list[dict]) -> str:
+    if len(entries) != 3:
+        raise SystemExit("card.svg requires exactly three slides.")
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
         f'width="{W}" height="{H}" role="img">',
-        f'<rect width="{W}" height="{H}" rx="12" fill="{BG}"/>',
+        f'<rect width="{W}" height="{H}" rx="14" fill="{BG}"/>',
     ]
     for index, entry in enumerate(entries[:3]):
-        values, key_times = CYCLE[index]
-        parts.append(_group(entry, values, key_times, "1" if index == 0 else "0"))
+        parts.append(_slide(index, entry))
     parts.append('</svg>')
-    return "\n".join(parts) + "\n"
+    svg = "\n".join(parts) + "\n"
+    if len(svg.encode()) > BUDGET:
+        raise SystemExit("card.svg is over the 150 KB budget.")
+    return svg
 
 
 def alt_text(entries: list[dict]) -> str:
     lines = []
     for entry in entries[:3]:
-        lines.append(f'{entry["audience"]}: "{entry["question"]}" — '
-                     f'{entry["reply"]} ({", ".join(entry["tags"])})')
-    return "A chat card cycling through three answers. " + " ".join(lines)
+        lines.append(f'{entry["audience"]}, "{entry["question"]}" — '
+                     f'{entry["answer"]} ({", ".join(entry["tags"])})')
+    return ("A card cycling through three answers, one per audience. "
+            + " ".join(lines))

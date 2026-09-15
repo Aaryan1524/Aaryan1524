@@ -9,10 +9,11 @@ from __future__ import annotations
 import re
 import urllib.parse
 from datetime import datetime, timezone
+from html import escape
 
 from scan import LAYERS
 
-MARKERS = ["HERO", "FLAGSHIPS", "MATRIX", "REPOS", "FOOTER"]
+MARKERS = ["HERO", "FLAGSHIPS", "SELECTED", "REPOS", "MATRIX", "FOOTER"]
 
 
 def relative(when: datetime | None, now: datetime) -> str:
@@ -52,33 +53,27 @@ def _repo_line(entry: dict, meta: dict, now: datetime) -> str:
     return f"{bits[0]} — " + " · ".join(tail)
 
 
-def repos_block(groups: list[dict], scanned: dict, archive_days: int,
-                now: datetime) -> str:
-    live: list[str] = []
-    archived: list[str] = []
+def repos_block(groups: list[dict], scanned: dict, now: datetime) -> str:
+    """The compact, grouped list for repos that are not selected work."""
+    grouped: list[str] = []
+    count = 0
     for group in groups:
-        rows, stale = [], []
+        rows = []
         for entry in group["repos"]:
+            if entry.get("selected"):
+                continue
             meta = scanned.get(entry["repo"])
             if not meta or meta.get("missing"):
                 continue
             line = _repo_line(entry, meta, now)
-            pushed = meta["pushed_at"]
-            old = pushed is None or (now - pushed).days > archive_days
-            (stale if old or meta["archived"] else rows).append(line)
+            rows.append(line)
+            count += 1
         if rows:
-            live.append(f"##### {group['name']}\n")
-            live.append("\n".join(f"- {r}" for r in rows) + "\n")
-        if stale:
-            archived.append(f"**{group['name']}**\n")
-            archived.append("\n".join(f"- {r}" for r in stale) + "\n")
-
-    out = "\n".join(live).rstrip()
-    if archived:
-        body = "\n".join(archived).rstrip()
-        out += ("\n\n<details>\n<summary>Archive — no push in over "
-                f"{archive_days} days</summary>\n\n{body}\n\n</details>")
-    return out
+            grouped.append(f"##### {group['name']}\n\n" +
+                           "\n".join(f"- {row}" for row in rows))
+    body = "\n\n".join(grouped)
+    return (f"<details>\n<summary>Everything else ({count})</summary>\n\n"
+            f"{body}\n\n</details>")
 
 
 def _cell(detected: dict | None, meta: dict, declared: bool) -> str:
@@ -122,33 +117,32 @@ def matrix_block(rows: list[tuple[dict, dict]], now: datetime) -> str:
     return "\n".join(lines)
 
 
+def selected_block(rows: list[tuple[dict, dict, str, str]]) -> str:
+    """One linked SVG plate per selected repository."""
+    return "\n".join(
+        f'<a href="{meta["html_url"]}"><img src="assets/rows/{slug}.svg" '
+        f'width="100%" alt="{escape(alt, quote=True)}"></a><br>'
+        for _entry, meta, slug, alt in rows
+    )
+
+
 def hero_block(sphere_alt: str, card_alt: str) -> str:
     return (f'<img src="assets/sphere.svg" width="100%" alt="{sphere_alt}">\n\n'
             f'<img src="assets/card.svg" width="100%" alt="{card_alt}">')
 
 
-def flagships_block(flagships: list[dict], scanned: dict) -> str:
+def flagships_block(flagships: list[dict]) -> str:
+    """The two flagship SVGs. A null poster deliberately has no link."""
     out = []
     for flag in flagships:
-        title = flag["title"]
-        meta = scanned.get(flag.get("repo") or "")
-        if meta and meta.get("missing"):
-            meta = None
-        if flag.get("url"):
-            head = f"**[{title}]({flag['url']})**"
-        elif meta and not meta["private"]:
-            head = f"**[{title}]({meta['html_url']})**"
-        else:
-            head = f"**{title}**"
-        note = []
-        if flag.get("repo") and (meta is None or meta["private"]):
-            note.append("code private")
-        elif not flag.get("repo"):
-            note.append("research, code private")
-        suffix = f" · {' · '.join(note)}" if note else ""
-        blurb = " ".join((flag.get("blurb") or "").split())
-        out.append(f"{head}{suffix}\n\n{blurb}" if blurb else f"{head}{suffix}")
-    return "\n\n".join(out)
+        facts = ", ".join(f"{label} {value}"
+                          for label, value in (flag.get("facts") or []))
+        alt = escape(f'{flag["title"]}: {flag["dek"]} {facts}.', quote=True)
+        image = (f'<img src="assets/flagship-{flag["key"]}.svg" width="49%" '
+                 f'alt="{alt}">')
+        href = flag.get("url") or flag.get("poster")
+        out.append(f'<a href="{href}">{image}</a>' if href else image)
+    return '<p align="center">\n  ' + "\n  ".join(out) + "\n</p>"
 
 
 def footer_block(stack_line: str, links: dict) -> str:
@@ -164,6 +158,7 @@ def footer_block(stack_line: str, links: dict) -> str:
         parts.append(f"[{links['email']}](mailto:{links['email']})")
     return (f"### Set in\n\n{stack}\n\n"
             f"### Correspondence\n\n" + " · ".join(parts) + "\n\n"
+            "### Colophon\n\n"
             "*Plates are SVG, rebuilt nightly by GitHub Actions.*")
 
 

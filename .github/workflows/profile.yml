@@ -38,6 +38,9 @@ jobs:
           PROFILE_SCAN_TOKEN: ${{ secrets.PROFILE_SCAN_TOKEN || github.token }}
         run: python scripts/build.py
 
+      - name: Check profile artifacts
+        run: python scripts/check_profile.py
+
       - name: Check every README link resolves
         env:
           PROFILE_SCAN_TOKEN: ${{ secrets.PROFILE_SCAN_TOKEN || github.token }}
