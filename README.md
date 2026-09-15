@@ -39,7 +39,6 @@ rest of the work is listed further down.
 | Project | Interface | API | Data | AI | Deploy | Idea → shipped |
 |---|---|---|---|---|---|---|
 | [Recursive Commits](https://github.com/Aaryan1524/ReccursiveCommits) | — | — | [SQLite](https://github.com/Aaryan1524/ReccursiveCommits/blob/main/Cargo.toml) | — | [Actions](https://github.com/Aaryan1524/ReccursiveCommits/blob/main/.github/workflows/ci.yml) | 1 day |
-| Te Vārtā | iOS | FastAPI | Postgres | — | Actions | 1 day |
 | [Claude Sentinel](https://github.com/Aaryan1524/ClaudeSentinel) | — | — | — | — | [launchd](https://github.com/Aaryan1524/ClaudeSentinel/blob/main/launchd/com.claude-usage-watcher.plist) | 0 days |
 | [event_finder](https://github.com/Aaryan1524/event_finder) | [Next.js](https://github.com/Aaryan1524/event_finder/blob/main/package.json) | [Next API](https://github.com/Aaryan1524/event_finder/blob/main/src/app/api/auth/%5B...nextauth%5D/route.ts) | [Supabase](https://github.com/Aaryan1524/event_finder/blob/main/package.json) | — | [Docker](https://github.com/Aaryan1524/event_finder/blob/main/websocket-server/docker-compose.yml) | 42 days |
 
