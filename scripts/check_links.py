@@ -27,8 +27,9 @@ def _try(url: str, method: str) -> int:
     request = urllib.request.Request(url, method=method, headers={
         "User-Agent": "aaryan1524-profile-build",
     })
-    if url.startswith("https://github.com/"):
-        request.add_header("Authorization", f"Bearer {ghapi.token()}")
+    auth = ghapi.token(required=False)
+    if auth and url.startswith("https://github.com/"):
+        request.add_header("Authorization", f"Bearer {auth}")
     try:
         with urllib.request.urlopen(request, timeout=20) as response:
             return response.status

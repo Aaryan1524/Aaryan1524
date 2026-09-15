@@ -20,13 +20,15 @@ API = "https://api.github.com"
 _cache: dict[str, object] = {}
 
 
-def token() -> str:
+def token(required: bool = True) -> str:
     for name in ("PROFILE_SCAN_TOKEN", "GITHUB_TOKEN", "GH_TOKEN"):
         value = os.environ.get(name)
         if value:
             return value
-    sys.exit("No token. Set PROFILE_SCAN_TOKEN (locally: export "
-             "PROFILE_SCAN_TOKEN=$(gh auth token)).")
+    if required:
+        sys.exit("No token. Set PROFILE_SCAN_TOKEN (locally: export "
+                 "PROFILE_SCAN_TOKEN=$(gh auth token)).")
+    return ""
 
 
 def _request(path: str, accept: str = "application/vnd.github+json"):

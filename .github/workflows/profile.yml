@@ -39,6 +39,8 @@ jobs:
         run: python scripts/build.py
 
       - name: Check every README link resolves
+        env:
+          PROFILE_SCAN_TOKEN: ${{ secrets.PROFILE_SCAN_TOKEN || github.token }}
         run: python scripts/check_links.py
 
       - name: Commit if the output changed
