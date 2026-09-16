@@ -4,7 +4,7 @@
 
 <img src="assets/card.svg" width="100%" alt="A card cycling through three answers, one per audience. if you are hiring, &quot;Can you ship a feature end to end?&quot; — Yes. Interface, API, data, deploy. (Python, FastAPI, React, PostgreSQL, C# / .NET, Docker) if you are investing, &quot;What are you building?&quot; — Te Vārtā — news that finds you. (Te Vārtā, Knowledge graph, iOS app, tevarta.com) if you build things, &quot;What is under the hood?&quot; — A deterministic core, with the LLM at the edge. (Neo4j, RAG pipelines, spaCy, Claude API, Docker)">
 
-<img src="assets/contributions.svg" width="100%" alt="GitHub contribution calendar: 787 contributions in the last year.">
+<img src="assets/contributions.svg" width="100%" alt="GitHub contribution calendar: 788 contributions in the last year.">
 
 <!-- HERO:END -->
 
