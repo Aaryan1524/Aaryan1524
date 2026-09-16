@@ -14,7 +14,7 @@ from html import escape
 import render_row
 from scan import LAYERS
 
-MARKERS = ["HERO", "FLAGSHIPS", "SELECTED", "REPOS", "MATRIX", "FOOTER"]
+MARKERS = ["HERO", "FLAGSHIPS", "REPOS", "MATRIX", "FOOTER"]
 
 
 def relative(when: datetime | None, now: datetime) -> str:
@@ -55,14 +55,11 @@ def _repo_line(entry: dict, meta: dict, now: datetime) -> str:
 
 
 def repos_block(groups: list[dict], scanned: dict, now: datetime) -> str:
-    """Grouped SVG cards for repositories under Everything else."""
+    """Grouped SVG cards for all repositories by category."""
     grouped: list[str] = []
-    count = 0
     for group in groups:
         rows = []
         for entry in group["repos"]:
-            if entry.get("selected"):
-                continue
             meta = scanned.get(entry["repo"])
             if not meta or meta.get("missing"):
                 continue
@@ -75,13 +72,10 @@ def repos_block(groups: list[dict], scanned: dict, now: datetime) -> str:
                 tag = (f'<a href="{meta["html_url"]}"><img src="assets/rows/{slug}.svg" '
                        f'width="100%" alt="{escape(alt, quote=True)}"></a><br>')
             rows.append(tag)
-            count += 1
         if rows:
-            grouped.append(f"##### {group['name']}\n\n" +
+            grouped.append(f"#### {group['name']}\n\n" +
                            "\n".join(rows))
-    body = "\n\n".join(grouped)
-    return (f"<details>\n<summary>Everything else ({count})</summary>\n\n"
-            f"{body}\n\n</details>")
+    return "\n\n".join(grouped)
 
 
 def _cell(detected: dict | None, meta: dict, declared: bool) -> str:
@@ -134,9 +128,14 @@ def selected_block(rows: list[tuple[dict, dict, str, str]]) -> str:
     )
 
 
-def hero_block(sphere_alt: str, card_alt: str) -> str:
-    return (f'<img src="assets/sphere.svg" width="100%" alt="{sphere_alt}">\n\n'
-            f'<img src="assets/card.svg" width="100%" alt="{card_alt}">')
+def hero_block(sphere_alt: str, card_alt: str, contrib_alt: str = "") -> str:
+    parts = [
+        f'<img src="assets/sphere.svg" width="100%" alt="{sphere_alt}">',
+        f'<img src="assets/card.svg" width="100%" alt="{card_alt}">',
+    ]
+    if contrib_alt:
+        parts.append(f'<img src="assets/contributions.svg" width="100%" alt="{contrib_alt}">')
+    return "\n\n".join(parts)
 
 
 def flagships_block(flagships: list[dict]) -> str:

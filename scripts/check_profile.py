@@ -9,6 +9,7 @@ from pathlib import Path
 
 import yaml
 
+import render_row
 import render_sphere
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -47,17 +48,12 @@ def sphere_labels_clear(skills: list[str]) -> None:
 def main() -> int:
     config = yaml.safe_load((ROOT / "projects.yml").read_text())
     readme = (ROOT / "README.md").read_text()
-    selected = [repo for group in config["groups"] for repo in group["repos"]
-                if repo.get("selected")]
-
-    if len(selected) > 6 or any(not repo.get("line") for repo in selected):
-        fail("selected work must contain at most six described repos")
     if "Founder of Te Vārtā · CS at FIU '27 · SWE intern at CoOrdio Health, summer 2026." not in readme:
         fail("the required one-line introduction is missing")
     if "What brings you here?" in readme:
         fail("removed card prompt is still present")
-    if readme.count("<details>") != 2 or "<summary>Everything else (" not in readme:
-        fail("README must contain the two collapsed sections")
+    if readme.count("<details>") != 1:
+        fail("README must contain only the collapsed evidence section")
     if "<summary>Evidence: where each layer was detected</summary>" not in readme:
         fail("evidence section is not collapsed")
     matrix = re.search(r"<!-- MATRIX:START -->(.*?)<!-- MATRIX:END -->",
@@ -73,7 +69,8 @@ def main() -> int:
 
     sphere = ROOT / "assets" / "sphere.svg"
     card = ROOT / "assets" / "card.svg"
-    for path in [sphere, card, *(ROOT / "assets" / f"flagship-{f['key']}.svg"
+    contributions = ROOT / "assets" / "contributions.svg"
+    for path in [sphere, card, contributions, *(ROOT / "assets" / f"flagship-{f['key']}.svg"
                                  for f in config["flagships"])]:
         if not path.exists() or path.stat().st_size >= SVG_LIMIT:
             fail(f"missing or oversized SVG: {path.relative_to(ROOT)}")
@@ -84,25 +81,21 @@ def main() -> int:
     for path in (ROOT / "assets" / "rows").glob("*.svg"):
         if path.stat().st_size >= ROW_LIMIT:
             fail(f"oversized work row: {path.relative_to(ROOT)}")
-    for repo in selected:
-        slug = re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-",
-                                             repo["title"].lower())).strip("-")
-        row = ROOT / "assets" / "rows" / f"{slug}.svg"
-        if not row.exists():
-            fail(f"missing selected-work row: {row.relative_to(ROOT)}")
-        language = re.search(r'<text x="740" y="27"[^>]*>([^<]+)</text>',
-                             row.read_text())
-        if not language:
-            fail(f"row has no language: {row.relative_to(ROOT)}")
-        selected_markup = re.search(
-            r"<!-- SELECTED:START -->(.*?)<!-- SELECTED:END -->", readme, re.S)
-        if not selected_markup:
-            fail("selected-work marker block is missing")
-        expected = (f'href="https://github.com/{repo["repo"]}"',
-                    f'assets/rows/{slug}.svg', repo["title"], repo["line"],
-                    language.group(1))
-        if not all(value in selected_markup.group(1) for value in expected):
-            fail(f"selected row is missing its link or complete alt text: {slug}")
+
+    repos_markup = re.search(
+        r"<!-- REPOS:START -->(.*?)<!-- REPOS:END -->", readme, re.S)
+    if not repos_markup:
+        fail("repos marker block is missing")
+    for group in config["groups"]:
+        for repo in group["repos"]:
+            slug = render_row.slug(repo["title"])
+            row = ROOT / "assets" / "rows" / f"{slug}.svg"
+            if not row.exists():
+                fail(f"missing work row: {row.relative_to(ROOT)}")
+            expected_href = f'href="https://github.com/{repo["repo"]}"'
+            expected_src = f'assets/rows/{slug}.svg'
+            if expected_href not in repos_markup.group(1) or expected_src not in repos_markup.group(1):
+                fail(f"repo is missing its link or image in README: {slug}")
 
     card_text = card.read_text()
     for values, times in (

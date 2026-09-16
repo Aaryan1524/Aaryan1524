@@ -115,3 +115,27 @@ def tree(owner_repo: str, ref: str) -> list[str]:
     return sorted(
         node["path"] for node in payload.get("tree", []) if node.get("type") == "blob"
     )
+
+
+def graphql(query: str, variables: dict | None = None) -> dict | None:
+    """POST query to the GitHub GraphQL API."""
+    url = f"{API}/graphql"
+    data = json.dumps({"query": query, "variables": variables or {}}).encode("utf-8")
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "aaryan1524-profile-build",
+        "Content-Type": "application/json",
+    }
+    if auth := token(required=False):
+        headers["Authorization"] = f"Bearer {auth}"
+    req = urllib.request.Request(url, data=data, headers=headers)
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                return json.loads(resp.read().decode())
+        except Exception:
+            if attempt < 2:
+                time.sleep(2 ** attempt)
+                continue
+    return None
+

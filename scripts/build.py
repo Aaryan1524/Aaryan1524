@@ -17,6 +17,7 @@ from pathlib import Path
 import yaml
 
 import render_card
+import render_contributions
 import render_flagship
 import render_readme
 import render_row
@@ -114,12 +115,6 @@ def main() -> int:
 
     scanned: dict[str, dict] = {}
     conflicts: list[str] = []
-    selected = [entry for entry in entries if entry.get("selected")]
-    if len(selected) > 6:
-        raise SystemExit("At most six repos may be marked selected: true.")
-    for entry in selected:
-        if not " ".join((entry.get("line") or "").split()):
-            raise SystemExit(f"Selected repo needs a description: {entry['repo']}")
 
     for entry in flag_entries + entries:
         if entry["repo"] in scanned:
@@ -154,8 +149,10 @@ def main() -> int:
     skills = config.get("skills", [])
     sphere = render_sphere.render(skills, version)
     card = render_card.render(config.get("card", []))
+    contributions, total_contrib = render_contributions.render(owner)
     write(ROOT / "assets" / "sphere.svg", sphere, changed)
     write(ROOT / "assets" / "card.svg", card, changed)
+    write(ROOT / "assets" / "contributions.svg", contributions, changed)
     for number, flag in enumerate(config["flagships"], start=1):
         write(ROOT / "assets" / f"flagship-{flag['key']}.svg",
               render_flagship.render(flag, number), changed)
@@ -185,25 +182,13 @@ def main() -> int:
             set((entry.get("declared") or {}).keys()))
         write(ROOT / "assets" / "rows" / f"{slug}.svg", row_svg, changed)
 
-    selected_rows = []
-    for entry in selected:
-        meta = scanned[entry["repo"]]
-        if meta.get("missing"):
-            raise SystemExit(f"Selected repo scan unavailable: {entry['repo']}")
-        if not meta.get("language"):
-            raise SystemExit(f"Selected repo needs a detected language: {entry['repo']}")
-        slug = render_row.slug(entry["title"])
-        selected_rows.append((entry, meta, slug, render_row.alt_text(
-            entry["title"], entry["line"], meta)))
-
     readme = (ROOT / "README.md").read_text()
     readme = render_readme.splice(readme, "HERO", render_readme.hero_block(
         html.escape(render_sphere.alt_text(skills), quote=True),
-        html.escape(render_card.alt_text(config.get("card", [])), quote=True)))
+        html.escape(render_card.alt_text(config.get("card", [])), quote=True),
+        html.escape(render_contributions.alt_text(total_contrib), quote=True)))
     readme = render_readme.splice(readme, "FLAGSHIPS",
                                   render_readme.flagships_block(config["flagships"]))
-    readme = render_readme.splice(readme, "SELECTED",
-                                  render_readme.selected_block(selected_rows))
     readme = render_readme.splice(readme, "REPOS", render_readme.repos_block(
         config["groups"], scanned, now))
     readme = render_readme.splice(readme, "MATRIX",
@@ -221,6 +206,7 @@ def main() -> int:
         return 1
     print(f"{version} · sphere {len(sphere.encode()) // 1024} KB · "
           f"card {len(card.encode()) // 1024} KB · "
+          f"contributions {len(contributions.encode()) // 1024} KB · "
           f"{len(matrix_rows)} matrix rows")
     print("changed: " + (", ".join(changed) if changed else "nothing"))
     return 0
