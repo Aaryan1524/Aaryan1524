@@ -77,15 +77,29 @@ def _build(skills: list[str], version: str, n: int, k_count: int) -> str:
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
         f'width="{W}" height="{H}" role="img">',
-        f'<rect width="{W}" height="{H}" rx="14" fill="{BG}"/>',
-        f'<text x="28" y="34" font-family="{MONO}" font-size="12" '
-        f'fill="{MUTED}">aaryan1524 · miami</text>',
-        f'<text x="732" y="34" text-anchor="end" font-family="{MONO}" '
-        f'font-size="12" fill="{MUTED}">{escape(version)} · est. 2004</text>',
-        f'<text x="28" y="228" font-family="{SERIF}" font-style="italic" '
-        f'font-size="42" fill="{SERIF_2}">Aaryan</text>',
-        f'<text x="732" y="228" text-anchor="end" font-family="{SERIF}" '
-        f'font-style="italic" font-size="42" fill="{SERIF_2}">Gajula</text>',
+        '<defs><style>'
+        '.plate-bg { fill: #1b1a18; }'
+        '.meta-text { fill: #8f887c; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 12px; }'
+        '.name-text { fill: #a8a193; font-family: Newsreader, Georgia, serif; font-style: italic; font-size: 42px; }'
+        '.sphere-dot { fill: #e9e3d6; }'
+        '.skill-label { fill: #e9e3d6; font-family: Newsreader, Georgia, serif; font-style: italic; font-size: 14px; }'
+        '.tagline-text { fill: #e9e3d6; font-family: Newsreader, Georgia, serif; font-size: 28px; }'
+        '.subline-text { fill: #8f887c; font-family: Newsreader, Georgia, serif; font-style: italic; font-size: 17px; }'
+        '@media (prefers-color-scheme: light) {'
+        '.plate-bg { fill: #ede9e0; }'
+        '.meta-text { fill: #6b655c; }'
+        '.name-text { fill: #5a564e; }'
+        '.sphere-dot { fill: #1a1a18; }'
+        '.skill-label { fill: #1a1a18; }'
+        '.tagline-text { fill: #1a1a18; }'
+        '.subline-text { fill: #6b655c; }'
+        '}'
+        '</style></defs>',
+        f'<rect width="{W}" height="{H}" rx="14" class="plate-bg"/>',
+        f'<text x="28" y="34" class="meta-text">aaryan1524 · miami</text>',
+        f'<text x="732" y="34" text-anchor="end" class="meta-text">{escape(version)} · est. 2004</text>',
+        f'<text x="28" y="228" class="name-text">Aaryan</text>',
+        f'<text x="732" y="228" text-anchor="end" class="name-text">Gajula</text>',
         '<g>',
     ]
 
@@ -97,7 +111,7 @@ def _build(skills: list[str], version: str, n: int, k_count: int) -> str:
         ops = [_round(0.12 + 0.88 * (f[2] + 1) / 2) for f in frames]
         dot_r = "2.2" if i in label_at else "1.5"
         parts.append(
-            f'<circle cx="{xs[0]}" cy="{ys[0]}" r="{dot_r}" fill="{CREAM}" '
+            f'<circle cx="{xs[0]}" cy="{ys[0]}" r="{dot_r}" class="sphere-dot" '
             f'opacity="{ops[0]}">'
             + _animate("cx", xs) + _animate("cy", ys) + _animate("opacity", ops)
             + '</circle>'
@@ -107,8 +121,7 @@ def _build(skills: list[str], version: str, n: int, k_count: int) -> str:
             ly = [_round(f[1] + 5) for f in frames]
             lo = [_round(_label_opacity(f[2], f[3])) for f in frames]
             labels.append(
-                f'<text x="{lx[0]}" y="{ly[0]}" font-family="{SERIF}" '
-                f'font-style="italic" font-size="14" fill="{CREAM}" '
+                f'<text x="{lx[0]}" y="{ly[0]}" class="skill-label" '
                 f'opacity="{lo[0]}">'
                 + _animate("x", lx) + _animate("y", ly) + _animate("opacity", lo)
                 + escape(label_at[i]) + '</text>'
@@ -117,12 +130,10 @@ def _build(skills: list[str], version: str, n: int, k_count: int) -> str:
     parts.append("".join(labels))
     parts.append('</g>')
     parts.append(
-        f'<text x="380" y="400" text-anchor="middle" font-family="{SERIF}" '
-        f'font-size="28" fill="{CREAM}">I build the whole thing.</text>'
+        f'<text x="380" y="400" text-anchor="middle" class="tagline-text">I build the whole thing.</text>'
     )
     parts.append(
-        f'<text x="380" y="432" text-anchor="middle" font-family="{SERIF}" '
-        f'font-style="italic" font-size="17" fill="{MUTED}">'
+        f'<text x="380" y="432" text-anchor="middle" class="subline-text">'
         'Interface to infrastructure.</text>'
     )
     parts.append('</svg>')

@@ -70,8 +70,8 @@ def _tag_width(text: str) -> float:
 def _progress(index: int) -> str:
     out = []
     for slot, x in enumerate((664, 688, 712)):
-        fill = CREAM if slot == index else STROKE
-        out.append(f'<rect x="{x}" y="33" width="18" height="2" fill="{fill}"/>')
+        cls = "prog-active" if slot == index else "prog-dim"
+        out.append(f'<rect x="{x}" y="33" width="18" height="2" class="{cls}"/>')
     return "".join(out)
 
 
@@ -82,9 +82,9 @@ def _tags(tags: list[str]) -> str:
         width = _tag_width(tag)
         out.append(
             f'<rect x="{x:.0f}" y="194" width="{width:.0f}" height="28" '
-            f'rx="14" fill="none" stroke="{STROKE}"/>'
+            f'rx="14" class="tag-box"/>'
             f'<text x="{x + width / 2:.0f}" y="212" text-anchor="middle" '
-            f'font-family="{MONO}" font-size="12" fill="{TAG_TEXT}">'
+            f'class="tag-text">'
             f'{escape(tag)}</text>'
         )
         x += width + 8
@@ -111,21 +111,21 @@ def _slide(index: int, entry: dict) -> str:
         f'</clipPath>'
         f'<g opacity="{1 if first else 0}">'
         + _animate("opacity", group_values, group_times) +
-        f'<text x="32" y="38" font-family="{MONO}" font-size="12" '
-        f'fill="{MUTED}">{escape(entry["audience"])}</text>'
+        f'<text x="32" y="38" font-size="12" '
+        f'class="muted-text">{escape(entry["audience"])}</text>'
         + _progress(index) +
-        f'<text x="{RIGHT}" y="72" text-anchor="end" font-family="{MONO}" '
-        f'font-size="11" fill="{MUTED}">you</text>'
+        f'<text x="{RIGHT}" y="72" text-anchor="end" '
+        f'font-size="11" class="muted-text">you</text>'
         f'<rect x="{bubble_x:.0f}" y="82" width="{bubble_w:.0f}" height="40" '
-        f'rx="20" fill="{BUBBLE}" stroke="{STROKE}"/>'
-        f'<text x="{bubble_x + 18:.0f}" y="108" font-family="{SANS}" '
-        f'font-size="16" fill="{CREAM}">{escape(question)}</text>'
-        f'<circle cx="52" cy="160" r="18" fill="{CREAM}"/>'
-        f'<text x="52" y="165" text-anchor="middle" font-family="{SERIF}" '
-        f'font-size="14" fill="{BG}">AG</text>'
+        f'rx="20" class="bubble-bg"/>'
+        f'<text x="{bubble_x + 18:.0f}" y="108" '
+        f'class="bubble-text">{escape(question)}</text>'
+        f'<circle cx="52" cy="160" r="18" class="avatar-circle"/>'
+        f'<text x="52" y="165" text-anchor="middle" '
+        f'class="avatar-text">AG</text>'
         f'<g clip-path="url(#{clip_id})">'
-        f'<text x="84" y="168" font-family="{SERIF}" font-size="22" '
-        f'fill="{CREAM}">{escape(entry["answer"])}</text></g>'
+        f'<text x="84" y="168" '
+        f'class="answer-text">{escape(entry["answer"])}</text></g>'
         f'<g opacity="{1 if first else 0}">'
         + _animate("opacity", tag_values, tag_times)
         + _tags(entry["tags"]) +
@@ -139,7 +139,33 @@ def render(entries: list[dict]) -> str:
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
         f'width="{W}" height="{H}" role="img">',
-        f'<rect width="{W}" height="{H}" rx="14" fill="{BG}"/>',
+        '<defs><style>'
+        '.plate-bg { fill: #1b1a18; }'
+        '.muted-text { fill: #8f887c; font-family: JetBrains Mono, ui-monospace, monospace; }'
+        '.bubble-bg { fill: #2a2926; stroke: #3a3833; }'
+        '.bubble-text { fill: #e9e3d6; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; font-size: 16px; }'
+        '.avatar-circle { fill: #e9e3d6; }'
+        '.avatar-text { fill: #1b1a18; font-family: Newsreader, Georgia, serif; font-size: 14px; font-weight: 600; }'
+        '.answer-text { fill: #e9e3d6; font-family: Newsreader, Georgia, serif; font-size: 22px; }'
+        '.tag-box { fill: none; stroke: #3a3833; }'
+        '.tag-text { fill: #cfc8ba; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 12px; }'
+        '.prog-active { fill: #e9e3d6; }'
+        '.prog-dim { fill: #3a3833; }'
+        '@media (prefers-color-scheme: light) {'
+        '.plate-bg { fill: #ede9e0; }'
+        '.muted-text { fill: #6b655c; }'
+        '.bubble-bg { fill: #dfd9cd; stroke: #cfc8ba; }'
+        '.bubble-text { fill: #1a1a18; }'
+        '.avatar-circle { fill: #1a1a18; }'
+        '.avatar-text { fill: #ede9e0; }'
+        '.answer-text { fill: #1a1a18; }'
+        '.tag-box { stroke: #cfc8ba; }'
+        '.tag-text { fill: #4a443b; }'
+        '.prog-active { fill: #1a1a18; }'
+        '.prog-dim { fill: #cfc8ba; }'
+        '}'
+        '</style></defs>',
+        f'<rect width="{W}" height="{H}" rx="14" class="plate-bg"/>',
     ]
     for index, entry in enumerate(entries[:3]):
         parts.append(_slide(index, entry))

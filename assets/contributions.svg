@@ -30,7 +30,7 @@
 </style>
 </defs>
 <rect width="760" height="170" rx="12" class="plate-bg"/>
-<text x="28" y="33" class="title-text">Contributions<tspan class="dot-text"> · </tspan><tspan class="sub-text">788 in the last year</tspan></text>
+<text x="28" y="33" class="title-text">Contributions<tspan class="dot-text"> · </tspan><tspan class="sub-text">789 in the last year</tspan></text>
 <text x="633" y="31" text-anchor="end" class="muted-text">Less</text>
 <rect x="641" y="23" width="9" height="9" rx="2" class="lvl-0"/>
 <rect x="653" y="23" width="9" height="9" rx="2" class="lvl-1"/>

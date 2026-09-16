@@ -67,21 +67,20 @@ def _strip(detected: dict, declared: set[str]) -> str:
         x = 470 + i * 29
         hit = detected.get(layer)
         if hit and layer in declared:
-            # Declared rather than found: outlined, dashed, cream.
             box = (f'<rect x="{x}" y="21" width="26" height="18" rx="3" '
-                   f'fill="none" stroke="{CREAM}" stroke-dasharray="3 2"/>')
-            fill = CREAM
+                   f'class="cell-decl-box"/>')
+            cls = "cell-decl-text"
         elif hit:
             box = (f'<rect x="{x}" y="21" width="26" height="18" rx="3" '
-                   f'fill="{CREAM}"/>')
-            fill = BG
+                   f'class="cell-hit-box"/>')
+            cls = "cell-hit-text"
         else:
             box = (f'<rect x="{x}" y="21" width="26" height="18" rx="3" '
-                   f'fill="none" stroke="{STROKE}"/>')
-            fill = DIM
+                   f'class="cell-dim-box"/>')
+            cls = "cell-dim-text"
         out.append(
             box + f'<text x="{x + 13}" y="33.5" text-anchor="middle" '
-            f'font-family="{MONO}" font-size="8.5" fill="{fill}">{label}</text>'
+            f'class="{cls}">{label}</text>'
         )
     return "".join(out)
 
@@ -93,16 +92,38 @@ def render(title: str, description: str, meta: dict,
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
         f'width="{W}" height="{H}" role="img">',
-        f'<rect width="{W}" height="{H}" rx="10" fill="{BG}"/>',
-        f'<text x="22" y="27" font-family="{SERIF}" font-size="19" '
-        f'fill="{CREAM}">{escape(title)}</text>',
-        f'<text x="22" y="46" font-family="{SANS}" font-size="12.5" '
-        f'fill="{MUTED}">{escape(truncate(description))}</text>',
+        '<defs><style>'
+        '.plate-bg { fill: #1b1a18; }'
+        '.title-text { fill: #e9e3d6; font-family: Newsreader, Georgia, serif; font-size: 19px; }'
+        '.desc-text { fill: #8f887c; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; font-size: 12.5px; }'
+        '.lang-text { fill: #cfc8ba; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 11px; }'
+        '.age-text { fill: #8f887c; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 11px; }'
+        '.cell-hit-box { fill: #e9e3d6; }'
+        '.cell-hit-text { fill: #1b1a18; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 8.5px; }'
+        '.cell-dim-box { fill: none; stroke: #3a3833; }'
+        '.cell-dim-text { fill: #5a564e; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 8.5px; }'
+        '.cell-decl-box { fill: none; stroke: #e9e3d6; stroke-dasharray: 3 2; }'
+        '.cell-decl-text { fill: #e9e3d6; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 8.5px; }'
+        '@media (prefers-color-scheme: light) {'
+        '.plate-bg { fill: #ede9e0; }'
+        '.title-text { fill: #1a1a18; }'
+        '.desc-text { fill: #5a564e; }'
+        '.lang-text { fill: #4a443b; }'
+        '.age-text { fill: #6b655c; }'
+        '.cell-hit-box { fill: #1a1a18; }'
+        '.cell-hit-text { fill: #ede9e0; }'
+        '.cell-dim-box { fill: none; stroke: #cfc8ba; }'
+        '.cell-dim-text { fill: #8f887c; }'
+        '.cell-decl-box { fill: none; stroke: #1a1a18; }'
+        '.cell-decl-text { fill: #1a1a18; }'
+        '}'
+        '</style></defs>',
+        f'<rect width="{W}" height="{H}" rx="10" class="plate-bg"/>',
+        f'<text x="22" y="27" class="title-text">{escape(title)}</text>',
+        f'<text x="22" y="46" class="desc-text">{escape(truncate(description))}</text>',
         _strip(detected, declared or set()),
-        f'<text x="740" y="27" text-anchor="end" font-family="{MONO}" '
-        f'font-size="11" fill="{LANG}">{escape(meta.get("language") or "—")}</text>',
-        f'<text x="740" y="46" text-anchor="end" font-family="{MONO}" '
-        f'font-size="11" fill="{MUTED}">{escape(age)} ↗</text>',
+        f'<text x="740" y="27" text-anchor="end" class="lang-text">{escape(meta.get("language") or "—")}</text>',
+        f'<text x="740" y="46" text-anchor="end" class="age-text">{escape(age)} ↗</text>',
         '</svg>',
     ]
     svg = "\n".join(parts) + "\n"

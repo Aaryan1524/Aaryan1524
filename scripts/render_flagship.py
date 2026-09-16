@@ -43,27 +43,43 @@ def render(flag: dict, number: int) -> str:
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
         f'width="{W}" height="{H}" role="img">',
-        f'<rect width="{W}" height="{H}" rx="14" fill="{BG}"/>',
-        f'<text x="24" y="34" font-family="{MONO}" font-size="11" '
-        f'fill="{MUTED}">{escape(flag["tag"])}</text>',
-        f'<text x="356" y="34" text-anchor="end" font-family="{MONO}" '
-        f'font-size="11" fill="{MUTED}">{number:02d}</text>',
-        f'<text x="24" y="92" font-family="{SERIF}" font-size="38" '
-        f'fill="{CREAM}">{escape(flag["title"])}</text>',
-        f'<text x="24" y="120" font-family="{SERIF}" font-style="italic" '
-        f'font-size="17" fill="{SERIF_2}">{escape(flag["dek"])}</text>',
-        f'<line x1="24" y1="142" x2="356" y2="142" stroke="{STROKE}"/>',
+        '<defs><style>'
+        '.plate-bg { fill: #1b1a18; }'
+        '.meta-text { fill: #8f887c; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 11px; }'
+        '.title-text { fill: #e9e3d6; font-family: Newsreader, Georgia, serif; font-size: 38px; }'
+        '.dek-text { fill: #a8a193; font-family: Newsreader, Georgia, serif; font-style: italic; font-size: 17px; }'
+        '.rule-line { stroke: #3a3833; }'
+        '.fact-label { fill: #8f887c; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 11px; }'
+        '.fact-value { fill: #e9e3d6; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; font-size: 13px; }'
+        '.link-active { fill: #e9e3d6; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 12px; }'
+        '.link-dim { fill: #8f887c; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 12px; }'
+        '@media (prefers-color-scheme: light) {'
+        '.plate-bg { fill: #ede9e0; }'
+        '.meta-text { fill: #6b655c; }'
+        '.title-text { fill: #1a1a18; }'
+        '.dek-text { fill: #5a564e; }'
+        '.rule-line { stroke: #dcd6cb; }'
+        '.fact-label { fill: #6b655c; }'
+        '.fact-value { fill: #1a1a18; }'
+        '.link-active { fill: #1a1a18; }'
+        '.link-dim { fill: #6b655c; }'
+        '}'
+        '</style></defs>',
+        f'<rect width="{W}" height="{H}" rx="14" class="plate-bg"/>',
+        f'<text x="24" y="34" class="meta-text">{escape(flag["tag"])}</text>',
+        f'<text x="356" y="34" text-anchor="end" class="meta-text">{number:02d}</text>',
+        f'<text x="24" y="92" class="title-text">{escape(flag["title"])}</text>',
+        f'<text x="24" y="120" class="dek-text">{escape(flag["dek"])}</text>',
+        f'<line x1="24" y1="142" x2="356" y2="142" class="rule-line"/>',
     ]
     for (label, value), y in zip(facts, FACT_Y):
         parts.append(
-            f'<text x="24" y="{y}" font-family="{MONO}" font-size="11" '
-            f'fill="{MUTED}">{escape(str(label))}</text>'
-            f'<text x="92" y="{y}" font-family="{SANS}" font-size="13" '
-            f'fill="{CREAM}">{escape(str(value))}</text>'
+            f'<text x="24" y="{y}" class="fact-label">{escape(str(label))}</text>'
+            f'<text x="92" y="{y}" class="fact-value">{escape(str(value))}</text>'
         )
+    link_class = "link-active" if has_link else "link-dim"
     parts.append(
-        f'<text x="356" y="240" text-anchor="end" font-family="{MONO}" '
-        f'font-size="12" fill="{link_fill}">{escape(link_label)}</text>'
+        f'<text x="356" y="240" text-anchor="end" class="{link_class}">{escape(link_label)}</text>'
     )
     parts.append('</svg>')
     svg = "\n".join(parts) + "\n"
