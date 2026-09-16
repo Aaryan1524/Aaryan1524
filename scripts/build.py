@@ -108,9 +108,10 @@ def main() -> int:
     declared_mode = settings.get("table_mode") == "declared"
 
     entries = [e for group in config["groups"] for e in group["repos"]]
+    all_flags = config.get("founder_research", []) + config.get("flagships", [])
     flag_entries = [
         {"repo": f["repo"], "title": f["title"], "line": "", "in_matrix": True}
-        for f in config["flagships"] if f.get("repo")
+        for f in all_flags if f.get("repo")
     ]
 
     scanned: dict[str, dict] = {}
@@ -137,7 +138,7 @@ def main() -> int:
                         meta["detected"][layer] = None
         scanned[entry["repo"]] = meta
 
-    for flag in config["flagships"]:
+    for flag in all_flags:
         if flag.get("repo") and scanned[flag["repo"]].get("missing"):
             raise SystemExit(
                 f"Flagship scan unavailable: {flag['repo']}. "
@@ -153,16 +154,22 @@ def main() -> int:
     write(ROOT / "assets" / "sphere.svg", sphere, changed)
     write(ROOT / "assets" / "card.svg", card, changed)
     write(ROOT / "assets" / "contributions.svg", contributions, changed)
-    for number, flag in enumerate(config["flagships"], start=1):
+    for number, flag in enumerate(config.get("founder_research", []), start=1):
+        write(ROOT / "assets" / f"flagship-{flag['key']}.svg",
+              render_flagship.render(flag, number), changed)
+    for number, flag in enumerate(config.get("flagships", []), start=1):
         write(ROOT / "assets" / f"flagship-{flag['key']}.svg",
               render_flagship.render(flag, number), changed)
 
-    matrix_rows = [
-        (entry, scanned[entry["repo"]])
-        for entry in flag_entries + entries
-        if entry.get("in_matrix")
-        and not scanned[entry["repo"]].get("missing")
-    ]
+    seen_matrix = set()
+    matrix_rows = []
+    for entry in flag_entries + entries:
+        repo = entry["repo"]
+        if repo in seen_matrix:
+            continue
+        seen_matrix.add(repo)
+        if entry.get("in_matrix") and not scanned[repo].get("missing"):
+            matrix_rows.append((entry, scanned[repo]))
     # Evidence is intentionally narrow: rows need at least three real or
     # explicitly declared layers to make an end-to-end claim.
     matrix_rows = [row for row in matrix_rows if sum(
@@ -187,8 +194,11 @@ def main() -> int:
         html.escape(render_sphere.alt_text(skills), quote=True),
         html.escape(render_card.alt_text(config.get("card", [])), quote=True),
         html.escape(render_contributions.alt_text(total_contrib), quote=True)))
+    if "founder_research" in config and "FOUNDER:START" in readme:
+        readme = render_readme.splice(readme, "FOUNDER",
+                                      render_readme.cards_block(config["founder_research"]))
     readme = render_readme.splice(readme, "FLAGSHIPS",
-                                  render_readme.flagships_block(config["flagships"]))
+                                  render_readme.cards_block(config["flagships"]))
     readme = render_readme.splice(readme, "REPOS", render_readme.repos_block(
         config["groups"], scanned, now))
     readme = render_readme.splice(readme, "MATRIX",

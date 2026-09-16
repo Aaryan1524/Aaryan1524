@@ -70,8 +70,9 @@ def main() -> int:
     sphere = ROOT / "assets" / "sphere.svg"
     card = ROOT / "assets" / "card.svg"
     contributions = ROOT / "assets" / "contributions.svg"
+    all_flags = config.get("founder_research", []) + config.get("flagships", [])
     for path in [sphere, card, contributions, *(ROOT / "assets" / f"flagship-{f['key']}.svg"
-                                 for f in config["flagships"])]:
+                                 for f in all_flags)]:
         if not path.exists() or path.stat().st_size >= SVG_LIMIT:
             fail(f"missing or oversized SVG: {path.relative_to(ROOT)}")
     if 'viewBox="0 0 760 470"' not in sphere.read_text():

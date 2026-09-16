@@ -29,10 +29,9 @@ skills:
   - spaCy
   - Claude API
 
-# --- flagships -------------------------------------------------------------
-# Rendered as two SVG cards. Fact values are capped at 28 characters; the
-# build fails rather than truncating one.
-flagships:
+# --- founder & research ---------------------------------------------------
+# Two editorial cards: Te Varta and the RemiVoice research paper (arXiv).
+founder_research:
   - key: te-varta
     tag: "flagship · founder"
     title: "Te Vārtā"
@@ -44,17 +43,76 @@ flagships:
     repo: Aaryan1524/TeVarta      # private; scanned for the evidence table
     url: https://www.tevarta.com
     link_label: "tevarta.com ↗"
-  - key: ember
+  - key: remivoice
     tag: "research · FIU"
-    title: "Ember"
-    dek: "Memory recall for dementia care."
+    title: "RemiVoice"
+    dek: "Voice AI for dementia care."
     facts:
       - [with, "Dr. Chen Chen"]
-      - [venue, "UIST poster"]
-      - [status, "in progress"]
-    repo: null                     # research code, not public
-    poster: null                   # set to the poster URL when it exists
-    link_label: "read the poster ↗"
+      - [venue, "arXiv '26 · UIST"]
+      - [paper, "arXiv:2608.15273"]
+    repo: null                     # research paper, not public code
+    url: https://arxiv.org/abs/2608.15273
+    link_label: "arxiv.org ↗"
+
+# --- flagships -------------------------------------------------------------
+# Curated spotlight projects presented as editorial cards.
+flagships:
+  - key: claude-sentinel
+    tag: "flagship · tools"
+    title: "Claude Sentinel"
+    dek: "Instant Claude reset notifier."
+    facts:
+      - [core, "Background state watcher"]
+      - [daemon, "macOS launchd plist"]
+      - [stack, "Python · AsyncIO"]
+    repo: Aaryan1524/ClaudeSentinel
+    url: https://github.com/Aaryan1524/ClaudeSentinel
+    link_label: "github.com ↗"
+  - key: shadow
+    tag: "flagship · hackathon"
+    title: "Shadow"
+    dek: "Meta smart-glasses coach."
+    facts:
+      - [hardware, "Meta Ray-Ban glasses"]
+      - [engine, "Real-time CV & audio AI"]
+      - [venue, "Princeton Hacks winner"]
+    repo: Aaryan1524/Shadow-PrincetonHacks-Education-Track-
+    url: https://github.com/Aaryan1524/Shadow-PrincetonHacks-Education-Track-
+    link_label: "github.com ↗"
+  - key: recursive-commits
+    tag: "flagship · systems"
+    title: "Recursive Commits"
+    dek: "Offline-first Git scheduler."
+    facts:
+      - [engine, "Deterministic DAG core"]
+      - [storage, "Local Git ref cache"]
+      - [stack, "Rust · Git CLI"]
+    repo: Aaryan1524/ReccursiveCommits
+    url: https://github.com/Aaryan1524/ReccursiveCommits
+    link_label: "github.com ↗"
+  - key: agent-sentinel
+    tag: "flagship · agents"
+    title: "Agent Sentinel"
+    dek: "Usage reset notifier for CLIs."
+    facts:
+      - [agents, "Claude, Gemini, Grok"]
+      - [delivery, "Telegram & QStash"]
+      - [stack, "Python · SQLite store"]
+    repo: Aaryan1524/AgentSentinel
+    url: https://github.com/Aaryan1524/AgentSentinel
+    link_label: "github.com ↗"
+  - key: 305-gemma-efficiency
+    tag: "flagship · hackathon"
+    title: "305 Gemma Efficiency"
+    dek: "On-device Gemma work tracker."
+    facts:
+      - [model, "Gemma 3 12B on-device"]
+      - [vision, "Apple Vision local OCR"]
+      - [privacy, "100% offline · zero cloud"]
+    repo: Aaryan1524/305Gemma-efficiencyproj
+    url: https://github.com/Aaryan1524/305Gemma-efficiencyproj
+    link_label: "github.com ↗"
 
 # --- repo listing ----------------------------------------------------------
 # Order of groups here is the order on the page.
@@ -64,97 +122,44 @@ groups:
       - repo: Aaryan1524/ClaudeSentinel
         title: Claude Sentinel
         line: "knows the instant your Claude usage window resets, even with the laptop closed"
-        in_matrix: true  # evidence table considers strong (3+ layer) scans
-        selected: true
+        in_matrix: true
       - repo: Aaryan1524/ReccursiveCommits
         title: Recursive Commits
         line: "an offline-first CLI for safely scheduling verified software changes across Git repositories"
         in_matrix: true
-        selected: true
       - repo: Aaryan1524/RepoParser
         title: RepoParser
         line: "chat with any GitHub repo; RAG over an ingested codebase"
         in_matrix: true
-        selected: true
-      - repo: Aaryan1524/Prompt-Perfector-AI-
-        title: Prompt Perfector
-        line: "turns vague prompts into precise, optimized ones"
-        in_matrix: true
       - repo: Aaryan1524/AgentSentinel
         title: Agent Sentinel
-        line: ""
-        in_matrix: false
-      - repo: Aaryan1524/Codex_Skills
-        title: Codex Skills
-        line: ""
+        line: "local-first usage window reset notifier across AI developer CLIs"
         in_matrix: false
 
   - name: Markets
     repos:
+      - repo: Aaryan1524/AI-loan-Repayment-
+        title: AI Loan Repayment dashboard
+        line: "repayment scenario modeling"
+        in_matrix: true
       - repo: Aaryan1524/Personal_trading
         title: Personal trading
         line: "scenario modeling over hype"
         in_matrix: true
-        selected: true
       - repo: Aaryan1524/NSE_sentiment_analysis
         title: NSE sentiment analysis
         line: "market sentiment from NSE data"
         in_matrix: true
-      - repo: Aaryan1524/AI-loan-Repayment-
-        title: AI loan repayment
-        line: "repayment modeling"
-        in_matrix: false
 
-  - name: Systems
-    repos:
-      - repo: Aaryan1524/Concurrent-Job-Scheduler
-        title: Concurrent Job Scheduler
-        line: "a multithreaded scheduler in Java"
-        in_matrix: false
-      - repo: Aaryan1524/Chess_server
-        title: Chess server
-        line: "a game server in Python"
-        in_matrix: false
-      - repo: Aaryan1524/TeVarta-architecture
-        title: Te Vārtā architecture
-        line: "the system design behind the engine"
-        in_matrix: false
-
-  - name: Products and hackathons
+  - name: Hackathon
     repos:
       - repo: Aaryan1524/Shadow-PrincetonHacks-Education-Track-
         title: Shadow
         line: "a Meta smart-glasses coach that watches a physical skill and gives live feedback"
         in_matrix: true
-        selected: true
-      - repo: Aaryan1524/event_finder
-        title: event_finder
-        line: "hyper-local event discovery, from house parties and pickup games to academic workshops"
-        in_matrix: true
-        selected: true
-      - repo: Aaryan1524/Bosnai
-        title: Bosnai
-        line: ""
-        in_matrix: false
-      - repo: Aaryan1524/StackMap
-        title: StackMap
-        line: ""
-        in_matrix: false
-      - repo: Aaryan1524/cruisefrnds
-        title: cruisefrnds
-        line: ""
-        in_matrix: false
-      - repo: Aaryan1524/Desktop-Pet
-        title: Desktop Pet
-        line: ""
-        in_matrix: false
       - repo: Aaryan1524/305Gemma-efficiencyproj
         title: 305 Gemma efficiency
-        line: ""
-        in_matrix: false
-      - repo: Aaryan1524/Craigslist_redesign
-        title: Craigslist redesign
-        line: "reimagining a classic"
+        line: "local-only work tracker using on-device Gemma and vision OCR"
         in_matrix: false
 
 # --- chat card -------------------------------------------------------------

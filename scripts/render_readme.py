@@ -14,7 +14,7 @@ from html import escape
 import render_row
 from scan import LAYERS
 
-MARKERS = ["HERO", "FLAGSHIPS", "REPOS", "MATRIX", "FOOTER"]
+MARKERS = ["HERO", "FOUNDER", "FLAGSHIPS", "REPOS", "MATRIX", "FOOTER"]
 
 
 def relative(when: datetime | None, now: datetime) -> str:
@@ -138,18 +138,21 @@ def hero_block(sphere_alt: str, card_alt: str, contrib_alt: str = "") -> str:
     return "\n\n".join(parts)
 
 
-def flagships_block(flagships: list[dict]) -> str:
-    """The two flagship SVGs. A null poster deliberately has no link."""
+def cards_block(cards: list[dict]) -> str:
+    """Editorial SVG cards gallery. Two cards sit side-by-side at 49% width."""
     out = []
-    for flag in flagships:
+    for card in cards:
         facts = ", ".join(f"{label} {value}"
-                          for label, value in (flag.get("facts") or []))
-        alt = escape(f'{flag["title"]}: {flag["dek"]} {facts}.', quote=True)
-        image = (f'<img src="assets/flagship-{flag["key"]}.svg" width="49%" '
+                          for label, value in (card.get("facts") or []))
+        alt = escape(f'{card["title"]}: {card["dek"]} {facts}.', quote=True)
+        image = (f'<img src="assets/flagship-{card["key"]}.svg" width="49%" '
                  f'alt="{alt}">')
-        href = flag.get("url") or flag.get("poster")
+        href = card.get("url") or card.get("poster")
         out.append(f'<a href="{href}">{image}</a>' if href else image)
     return '<p align="center">\n  ' + "\n  ".join(out) + "\n</p>"
+
+
+flagships_block = cards_block
 
 
 def footer_block(stack_line: str, links: dict) -> str:

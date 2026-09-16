@@ -3,11 +3,11 @@
 <rect width="380" height="260" rx="14" class="plate-bg"/>
 <text x="24" y="34" class="meta-text">research · FIU</text>
 <text x="356" y="34" text-anchor="end" class="meta-text">02</text>
-<text x="24" y="92" class="title-text">Ember</text>
-<text x="24" y="120" class="dek-text">Memory recall for dementia care.</text>
+<text x="24" y="92" class="title-text">RemiVoice</text>
+<text x="24" y="120" class="dek-text">Voice AI for dementia care.</text>
 <line x1="24" y1="142" x2="356" y2="142" class="rule-line"/>
 <text x="24" y="170" class="fact-label">with</text><text x="92" y="170" class="fact-value">Dr. Chen Chen</text>
-<text x="24" y="193" class="fact-label">venue</text><text x="92" y="193" class="fact-value">UIST poster</text>
-<text x="24" y="216" class="fact-label">status</text><text x="92" y="216" class="fact-value">in progress</text>
-<text x="356" y="240" text-anchor="end" class="link-dim">poster in progress</text>
+<text x="24" y="193" class="fact-label">venue</text><text x="92" y="193" class="fact-value">arXiv '26 · UIST</text>
+<text x="24" y="216" class="fact-label">paper</text><text x="92" y="216" class="fact-value">arXiv:2608.15273</text>
+<text x="356" y="240" text-anchor="end" class="link-active">arxiv.org ↗</text>
 </svg>

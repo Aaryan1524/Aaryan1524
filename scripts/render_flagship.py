@@ -40,13 +40,19 @@ def render(flag: dict, number: int) -> str:
     link_label = flag["link_label"] if has_link else "poster in progress"
     link_fill = CREAM if has_link else MUTED
 
+    title_size = 38
+    if len(flag["title"]) > 18:
+        title_size = 26
+    elif len(flag["title"]) > 14:
+        title_size = 31
+
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
         f'width="{W}" height="{H}" role="img">',
         '<defs><style>'
         '.plate-bg { fill: #1b1a18; }'
         '.meta-text { fill: #8f887c; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 11px; }'
-        '.title-text { fill: #e9e3d6; font-family: Newsreader, Georgia, serif; font-size: 38px; }'
+        f'.title-text {{ fill: #e9e3d6; font-family: Newsreader, Georgia, serif; font-size: {title_size}px; }}'
         '.dek-text { fill: #a8a193; font-family: Newsreader, Georgia, serif; font-style: italic; font-size: 17px; }'
         '.rule-line { stroke: #3a3833; }'
         '.fact-label { fill: #8f887c; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 11px; }'
