@@ -124,7 +124,7 @@ def main() -> int:
     for entry in flag_entries + entries:
         if entry["repo"] in scanned:
             continue
-        needs_detection = bool(entry.get("in_matrix") or entry.get("selected"))
+        needs_detection = True
         meta = scan.scan_repo(entry, rules, needs_detection)
         if not meta.get("missing"):
             # A declared value always wins. Disagreements go to the report,
@@ -173,6 +173,18 @@ def main() -> int:
     # Most recently pushed first, so the table opens on current work.
     matrix_rows.sort(key=lambda row: row[1]["pushed_at"] or now, reverse=True)
 
+    for entry in entries:
+        meta = scanned.get(entry["repo"])
+        if not meta or meta.get("missing"):
+            continue
+        meta["age_days"] = ((now - meta["pushed_at"]).days
+                            if meta.get("pushed_at") else None)
+        slug = render_row.slug(entry["title"])
+        row_svg = render_row.render(
+            entry["title"], entry.get("line") or "", meta,
+            set((entry.get("declared") or {}).keys()))
+        write(ROOT / "assets" / "rows" / f"{slug}.svg", row_svg, changed)
+
     selected_rows = []
     for entry in selected:
         meta = scanned[entry["repo"]]
@@ -180,13 +192,7 @@ def main() -> int:
             raise SystemExit(f"Selected repo scan unavailable: {entry['repo']}")
         if not meta.get("language"):
             raise SystemExit(f"Selected repo needs a detected language: {entry['repo']}")
-        meta["age_days"] = ((now - meta["pushed_at"]).days
-                            if meta.get("pushed_at") else None)
         slug = render_row.slug(entry["title"])
-        row_svg = render_row.render(
-            entry["title"], entry["line"], meta,
-            set((entry.get("declared") or {}).keys()))
-        write(ROOT / "assets" / "rows" / f"{slug}.svg", row_svg, changed)
         selected_rows.append((entry, meta, slug, render_row.alt_text(
             entry["title"], entry["line"], meta)))
 

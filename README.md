@@ -35,33 +35,33 @@ Founder of Te Vārtā · CS at FIU '27 · SWE intern at CoOrdio Health, summer 2
 <!-- REPOS:START -->
 
 <details>
-<summary>Everything else (16)</summary>
+<summary>Everything else (14)</summary>
 
 ##### Tools and agents
 
-- **[Prompt Perfector](https://github.com/Aaryan1524/Prompt-Perfector-AI-)** — turns vague prompts into precise, optimized ones · HTML · ★ 1 · updated 11 months ago
-- **[Agent Sentinel](https://github.com/Aaryan1524/AgentSentinel)** — Python · updated today
-- **[Codex Skills](https://github.com/Aaryan1524/Codex_Skills)** — Python · ★ 1 · updated 3 days ago
+<a href="https://github.com/Aaryan1524/Prompt-Perfector-AI-"><img src="assets/rows/prompt-perfector.svg" width="100%" alt="Prompt Perfector — turns vague prompts into precise, optimized ones. HTML."></a><br>
+<a href="https://github.com/Aaryan1524/AgentSentinel"><img src="assets/rows/agent-sentinel.svg" width="100%" alt="Agent Sentinel — Python."></a><br>
+<a href="https://github.com/Aaryan1524/Codex_Skills"><img src="assets/rows/codex-skills.svg" width="100%" alt="Codex Skills — Python."></a><br>
 
 ##### Markets
 
-- **[NSE sentiment analysis](https://github.com/Aaryan1524/NSE_sentiment_analysis)** — market sentiment from NSE data · JavaScript · ★ 1 · updated 7 months ago
-- **[AI loan repayment](https://github.com/Aaryan1524/AI-loan-Repayment-)** — repayment modeling · TypeScript · ★ 1 · updated 6 months ago
+<a href="https://github.com/Aaryan1524/NSE_sentiment_analysis"><img src="assets/rows/nse-sentiment-analysis.svg" width="100%" alt="NSE sentiment analysis — market sentiment from NSE data. JavaScript."></a><br>
+<a href="https://github.com/Aaryan1524/AI-loan-Repayment-"><img src="assets/rows/ai-loan-repayment.svg" width="100%" alt="AI loan repayment — repayment modeling. TypeScript."></a><br>
 
 ##### Systems
 
-- **[Concurrent Job Scheduler](https://github.com/Aaryan1524/Concurrent-Job-Scheduler)** — a multithreaded scheduler in Java · Java · ★ 1 · updated 5 months ago
-- **[Chess server](https://github.com/Aaryan1524/Chess_server)** — a game server in Python · Python · ★ 1 · updated 10 months ago
-- **[Te Vārtā architecture](https://github.com/Aaryan1524/TeVarta-architecture)** — the system design behind the engine · ★ 1 · updated 2 months ago
+<a href="https://github.com/Aaryan1524/Concurrent-Job-Scheduler"><img src="assets/rows/concurrent-job-scheduler.svg" width="100%" alt="Concurrent Job Scheduler — a multithreaded scheduler in Java. Java."></a><br>
+<a href="https://github.com/Aaryan1524/Chess_server"><img src="assets/rows/chess-server.svg" width="100%" alt="Chess server — a game server in Python. Python."></a><br>
+<a href="https://github.com/Aaryan1524/TeVarta-architecture"><img src="assets/rows/te-varta-architecture.svg" width="100%" alt="Te Vārtā architecture — the system design behind the engine."></a><br>
 
 ##### Products and hackathons
 
-- **[Bosnai](https://github.com/Aaryan1524/Bosnai)** — TypeScript · ★ 1 · updated today
-- **[StackMap](https://github.com/Aaryan1524/StackMap)** — Python · ★ 1 · updated 6 months ago
-- **[cruisefrnds](https://github.com/Aaryan1524/cruisefrnds)** — TypeScript · ★ 1 · updated 6 months ago
-- **[Desktop Pet](https://github.com/Aaryan1524/Desktop-Pet)** — TypeScript · updated 2 months ago
-- **[305 Gemma efficiency](https://github.com/Aaryan1524/305Gemma-efficiencyproj)** — Python · ★ 1 · updated 7 weeks ago
-- **[Craigslist redesign](https://github.com/Aaryan1524/Craigslist_redesign)** — reimagining a classic · HTML · ★ 1 · updated 5 months ago
+<a href="https://github.com/Aaryan1524/Bosnai"><img src="assets/rows/bosnai.svg" width="100%" alt="Bosnai — TypeScript."></a><br>
+<a href="https://github.com/Aaryan1524/StackMap"><img src="assets/rows/stackmap.svg" width="100%" alt="StackMap — Python."></a><br>
+<a href="https://github.com/Aaryan1524/cruisefrnds"><img src="assets/rows/cruisefrnds.svg" width="100%" alt="cruisefrnds — TypeScript."></a><br>
+<a href="https://github.com/Aaryan1524/Desktop-Pet"><img src="assets/rows/desktop-pet.svg" width="100%" alt="Desktop Pet — TypeScript."></a><br>
+<a href="https://github.com/Aaryan1524/305Gemma-efficiencyproj"><img src="assets/rows/305-gemma-efficiency.svg" width="100%" alt="305 Gemma efficiency — Python."></a><br>
+<a href="https://github.com/Aaryan1524/Craigslist_redesign"><img src="assets/rows/craigslist-redesign.svg" width="100%" alt="Craigslist redesign — reimagining a classic. HTML."></a><br>
 
 </details>
 
@@ -79,10 +79,13 @@ Each cell was read from source and links to the file that proves it.
 | Project | Interface | API | Data | AI | Deploy | Idea → shipped |
 |---|---|---|---|---|---|---|
 | Te Vārtā | iOS | FastAPI | Postgres | — | Actions | 1 day |
+| [Shadow](https://github.com/Aaryan1524/Shadow-PrincetonHacks-Education-Track-) | [iOS](https://github.com/Aaryan1524/Shadow-PrincetonHacks-Education-Track-/blob/main/Shadow/ContentView.swift) | [FastAPI](https://github.com/Aaryan1524/Shadow-PrincetonHacks-Education-Track-/blob/main/backend/requirements.txt) | — | [Claude API](https://github.com/Aaryan1524/Shadow-PrincetonHacks-Education-Track-/blob/main/backend/requirements.txt) | — | — |
 | [Claude Sentinel](https://github.com/Aaryan1524/ClaudeSentinel) | [CLI](https://github.com/Aaryan1524/ClaudeSentinel/blob/main/claude_usage_watcher.py) | — | [JSON state](https://github.com/Aaryan1524/ClaudeSentinel/blob/main/claude_usage_watcher.py) | — | [launchd](https://github.com/Aaryan1524/ClaudeSentinel/blob/main/launchd/com.claude-usage-watcher.plist) | 0 days |
+| [Personal trading](https://github.com/Aaryan1524/Personal_trading) | [HTML](https://github.com/Aaryan1524/Personal_trading/blob/main/nifty-ai/frontend/index.html) | [FastAPI](https://github.com/Aaryan1524/Personal_trading/blob/main/nifty-ai/requirements.txt) | — | [Claude API](https://github.com/Aaryan1524/Personal_trading/blob/main/nifty-ai/requirements.txt) | — | — |
 | [event_finder](https://github.com/Aaryan1524/event_finder) | [Next.js](https://github.com/Aaryan1524/event_finder/blob/main/package.json) | [Next API](https://github.com/Aaryan1524/event_finder/blob/main/src/app/api/auth/%5B...nextauth%5D/route.ts) | [Supabase](https://github.com/Aaryan1524/event_finder/blob/main/package.json) | — | [Docker](https://github.com/Aaryan1524/event_finder/blob/main/websocket-server/docker-compose.yml) | 42 days |
+| [Prompt Perfector](https://github.com/Aaryan1524/Prompt-Perfector-AI-) | [HTML](https://github.com/Aaryan1524/Prompt-Perfector-AI-/blob/main/index.html) | [Flask](https://github.com/Aaryan1524/Prompt-Perfector-AI-/blob/main/requirements.txt) | — | [Gemini](https://github.com/Aaryan1524/Prompt-Perfector-AI-/blob/main/requirements.txt) | — | — |
 
-*Cells detected from source on 2026-09-15.*
+*Cells detected from source on 2026-09-16.*
 
 <!-- MATRIX:END -->
 

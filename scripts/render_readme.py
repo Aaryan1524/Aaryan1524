@@ -11,6 +11,7 @@ import urllib.parse
 from datetime import datetime, timezone
 from html import escape
 
+import render_row
 from scan import LAYERS
 
 MARKERS = ["HERO", "FLAGSHIPS", "SELECTED", "REPOS", "MATRIX", "FOOTER"]
@@ -54,7 +55,7 @@ def _repo_line(entry: dict, meta: dict, now: datetime) -> str:
 
 
 def repos_block(groups: list[dict], scanned: dict, now: datetime) -> str:
-    """The compact, grouped list for repos that are not selected work."""
+    """Grouped SVG cards for repositories under Everything else."""
     grouped: list[str] = []
     count = 0
     for group in groups:
@@ -65,12 +66,19 @@ def repos_block(groups: list[dict], scanned: dict, now: datetime) -> str:
             meta = scanned.get(entry["repo"])
             if not meta or meta.get("missing"):
                 continue
-            line = _repo_line(entry, meta, now)
-            rows.append(line)
+            slug = render_row.slug(entry["title"])
+            alt = render_row.alt_text(entry["title"], entry.get("line") or "", meta)
+            if meta.get("private"):
+                tag = (f'<img src="assets/rows/{slug}.svg" '
+                       f'width="100%" alt="{escape(alt, quote=True)}"><br>')
+            else:
+                tag = (f'<a href="{meta["html_url"]}"><img src="assets/rows/{slug}.svg" '
+                       f'width="100%" alt="{escape(alt, quote=True)}"></a><br>')
+            rows.append(tag)
             count += 1
         if rows:
             grouped.append(f"##### {group['name']}\n\n" +
-                           "\n".join(f"- {row}" for row in rows))
+                           "\n".join(rows))
     body = "\n\n".join(grouped)
     return (f"<details>\n<summary>Everything else ({count})</summary>\n\n"
             f"{body}\n\n</details>")

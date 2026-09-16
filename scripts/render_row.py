@@ -9,6 +9,7 @@ the evidence table, so the two can never disagree.
 from __future__ import annotations
 
 import re
+import unicodedata
 from xml.sax.saxutils import escape
 
 BG = "#1b1a18"
@@ -37,7 +38,8 @@ CELLS = [
 
 
 def slug(name: str) -> str:
-    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", name.lower())).strip("-")
+    normalized = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode("ascii")
+    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", normalized.lower())).strip("-")
 
 
 def short_age(days: int | None) -> str:
@@ -111,8 +113,9 @@ def render(title: str, description: str, meta: dict,
 
 def alt_text(title: str, description: str, meta: dict) -> str:
     bits = [title]
-    if description:
-        bits.append(truncate(description))
+    desc = " ".join((description or "").split())
+    if desc:
+        bits.append(desc)
     if meta.get("language"):
         bits.append(meta["language"])
     return " — ".join(bits[:2]) + (f". {bits[2]}." if len(bits) > 2 else ".")
