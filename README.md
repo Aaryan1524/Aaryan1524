@@ -76,7 +76,7 @@ Each cell was read from source and links to the file that proves it.
 | [Personal trading](https://github.com/Aaryan1524/Personal_trading) | [HTML](https://github.com/Aaryan1524/Personal_trading/blob/main/nifty-ai/frontend/index.html) | [FastAPI](https://github.com/Aaryan1524/Personal_trading/blob/main/nifty-ai/requirements.txt) | — | [Claude API](https://github.com/Aaryan1524/Personal_trading/blob/main/nifty-ai/requirements.txt) | — | — |
 | [AI Loan Repayment dashboard](https://github.com/Aaryan1524/AI-loan-Repayment-) | [Next.js](https://github.com/Aaryan1524/AI-loan-Repayment-/blob/main/package.json) | [Next API](https://github.com/Aaryan1524/AI-loan-Repayment-/blob/main/src/app/api/advice/route.ts) | [Supabase](https://github.com/Aaryan1524/AI-loan-Repayment-/blob/main/package.json) | [Claude API](https://github.com/Aaryan1524/AI-loan-Repayment-/blob/main/package.json) | — | — |
 
-*Cells detected from source on 2026-09-17.*
+*Cells detected from source on 2026-09-18.*
 
 <!-- MATRIX:END -->
 

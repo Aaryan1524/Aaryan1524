@@ -1,6 +1,6 @@
 # Scan report
 
-Generated 2026-09-17 by `scripts/build.py`.
+Generated 2026-09-18 by `scripts/build.py`.
 This file is for me, not for visitors. Nothing here is published.
 
 ## Listed repos needing attention
