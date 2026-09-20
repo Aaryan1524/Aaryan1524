@@ -2,7 +2,7 @@
 <defs><style>.plate-bg { fill: #1b1a18; }.meta-text { fill: #8f887c; font-family: JetBrains Mono, ui-monospace, monospace; font-size: 12px; }.name-text { fill: #a8a193; font-family: Newsreader, Georgia, serif; font-style: italic; font-size: 42px; }.sphere-dot { fill: #e9e3d6; }.skill-label { fill: #e9e3d6; font-family: Newsreader, Georgia, serif; font-style: italic; font-size: 14px; }.tagline-text { fill: #e9e3d6; font-family: Newsreader, Georgia, serif; font-size: 28px; }.subline-text { fill: #8f887c; font-family: Newsreader, Georgia, serif; font-style: italic; font-size: 17px; }@media (prefers-color-scheme: light) {.plate-bg { fill: #ede9e0; }.meta-text { fill: #6b655c; }.name-text { fill: #5a564e; }.sphere-dot { fill: #1a1a18; }.skill-label { fill: #1a1a18; }.tagline-text { fill: #1a1a18; }.subline-text { fill: #6b655c; }}</style></defs>
 <rect width="760" height="470" rx="14" class="plate-bg"/>
 <text x="28" y="34" class="meta-text">aaryan1524 · miami</text>
-<text x="732" y="34" text-anchor="end" class="meta-text">v22.2.540 · est. 2004</text>
+<text x="732" y="34" text-anchor="end" class="meta-text">v22.2.570 · est. 2004</text>
 <text x="28" y="228" class="name-text">Aaryan</text>
 <text x="732" y="228" text-anchor="end" class="name-text">Gajula</text>
 <g>
