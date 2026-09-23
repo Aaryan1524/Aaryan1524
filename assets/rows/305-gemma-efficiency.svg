@@ -5,5 +5,5 @@
 <text x="22" y="46" class="desc-text">local-only work tracker using on-device Gemma and vision OCR</text>
 <rect x="470" y="21" width="26" height="18" rx="3" class="cell-hit-box"/><text x="483" y="33.5" text-anchor="middle" class="cell-hit-text">UI</text><rect x="499" y="21" width="26" height="18" rx="3" class="cell-dim-box"/><text x="512" y="33.5" text-anchor="middle" class="cell-dim-text">API</text><rect x="528" y="21" width="26" height="18" rx="3" class="cell-dim-box"/><text x="541" y="33.5" text-anchor="middle" class="cell-dim-text">DB</text><rect x="557" y="21" width="26" height="18" rx="3" class="cell-dim-box"/><text x="570" y="33.5" text-anchor="middle" class="cell-dim-text">AI</text><rect x="586" y="21" width="26" height="18" rx="3" class="cell-dim-box"/><text x="599" y="33.5" text-anchor="middle" class="cell-dim-text">OPS</text>
 <text x="740" y="27" text-anchor="end" class="lang-text">Python</text>
-<text x="740" y="46" text-anchor="end" class="age-text">8 wk ↗</text>
+<text x="740" y="46" text-anchor="end" class="age-text">2 mo ↗</text>
 </svg>
