@@ -4,7 +4,7 @@
 
 <img src="assets/card.svg" width="100%" alt="A card cycling through three answers, one per audience. if you are hiring, &quot;Can you ship a feature end to end?&quot; — Yes. Interface, API, data, deploy. (Python, FastAPI, React, PostgreSQL, C# / .NET, Docker) if you are investing, &quot;What are you building?&quot; — Te Vārtā — news that finds you. (Te Vārtā, Knowledge graph, iOS app, tevarta.com) if you build things, &quot;What is under the hood?&quot; — A deterministic core, with the LLM at the edge. (Neo4j, RAG pipelines, spaCy, Claude API, Docker)">
 
-<img src="assets/contributions.svg" width="100%" alt="GitHub contribution calendar: 849 contributions in the last year.">
+<img src="assets/contributions.svg" width="100%" alt="GitHub contribution calendar: 906 contributions in the last year.">
 
 <!-- HERO:END -->
 
@@ -76,7 +76,7 @@ Each cell was read from source and links to the file that proves it.
 | [Personal trading](https://github.com/Aaryan1524/Personal_trading) | [HTML](https://github.com/Aaryan1524/Personal_trading/blob/main/nifty-ai/frontend/index.html) | [FastAPI](https://github.com/Aaryan1524/Personal_trading/blob/main/nifty-ai/requirements.txt) | — | [Claude API](https://github.com/Aaryan1524/Personal_trading/blob/main/nifty-ai/requirements.txt) | — | — |
 | [AI Loan Repayment dashboard](https://github.com/Aaryan1524/AI-loan-Repayment-) | [Next.js](https://github.com/Aaryan1524/AI-loan-Repayment-/blob/main/package.json) | [Next API](https://github.com/Aaryan1524/AI-loan-Repayment-/blob/main/src/app/api/advice/route.ts) | [Supabase](https://github.com/Aaryan1524/AI-loan-Repayment-/blob/main/package.json) | [Claude API](https://github.com/Aaryan1524/AI-loan-Repayment-/blob/main/package.json) | — | — |
 
-*Cells detected from source on 2026-09-25.*
+*Cells detected from source on 2026-09-26.*
 
 <!-- MATRIX:END -->
 
