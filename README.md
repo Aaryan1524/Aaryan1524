@@ -4,7 +4,7 @@
 
 <img src="assets/card.svg" width="100%" alt="A card cycling through three answers, one per audience. if you are hiring, &quot;Can you ship a feature end to end?&quot; — Yes. Interface, API, data, deploy. (Python, FastAPI, React, PostgreSQL, C# / .NET, Docker) if you are investing, &quot;What are you building?&quot; — Te Vārtā — news that finds you. (Te Vārtā, Knowledge graph, iOS app, tevarta.com) if you build things, &quot;What is under the hood?&quot; — A deterministic core, with the LLM at the edge. (Neo4j, RAG pipelines, spaCy, Claude API, Docker)">
 
-<img src="assets/contributions.svg" width="100%" alt="GitHub contribution calendar: 1,375 contributions in the last year.">
+<img src="assets/contributions.svg" width="100%" alt="GitHub contribution calendar: 1,480 contributions in the last year.">
 
 <!-- HERO:END -->
 
@@ -70,13 +70,13 @@ Each cell was read from source and links to the file that proves it.
 
 | Project | Interface | API | Data | AI | Deploy | Idea → shipped |
 |---|---|---|---|---|---|---|
-| Te Vārtā | iOS | FastAPI | Neo4j | — | Actions | 1 day |
+| [Te Vārtā](https://github.com/Aaryan1524/TeVarta) | [iOS](https://github.com/Aaryan1524/TeVarta/blob/main/ios/TeVarta/TeVartaApp.swift) | [FastAPI](https://github.com/Aaryan1524/TeVarta/blob/main/pyproject.toml) | [Neo4j](https://github.com/Aaryan1524/TeVarta/blob/main/pyproject.toml) | — | [Actions](https://github.com/Aaryan1524/TeVarta/blob/main/.github/workflows/backend.yml) | 1 day |
 | [Shadow](https://github.com/Aaryan1524/Shadow-PrincetonHacks-Education-Track-) | [iOS](https://github.com/Aaryan1524/Shadow-PrincetonHacks-Education-Track-/blob/main/Shadow/ContentView.swift) | [FastAPI](https://github.com/Aaryan1524/Shadow-PrincetonHacks-Education-Track-/blob/main/backend/requirements.txt) | — | [Claude API](https://github.com/Aaryan1524/Shadow-PrincetonHacks-Education-Track-/blob/main/backend/requirements.txt) | — | — |
 | [Claude Sentinel](https://github.com/Aaryan1524/ClaudeSentinel) | [CLI](https://github.com/Aaryan1524/ClaudeSentinel/blob/main/claude_usage_watcher.py) | — | [JSON state](https://github.com/Aaryan1524/ClaudeSentinel/blob/main/claude_usage_watcher.py) | — | [launchd](https://github.com/Aaryan1524/ClaudeSentinel/blob/main/launchd/com.claude-usage-watcher.plist) | 0 days |
 | [Personal trading](https://github.com/Aaryan1524/Personal_trading) | [HTML](https://github.com/Aaryan1524/Personal_trading/blob/main/nifty-ai/frontend/index.html) | [FastAPI](https://github.com/Aaryan1524/Personal_trading/blob/main/nifty-ai/requirements.txt) | — | [Claude API](https://github.com/Aaryan1524/Personal_trading/blob/main/nifty-ai/requirements.txt) | — | — |
 | [AI Loan Repayment dashboard](https://github.com/Aaryan1524/AI-loan-Repayment-) | [Next.js](https://github.com/Aaryan1524/AI-loan-Repayment-/blob/main/package.json) | [Next API](https://github.com/Aaryan1524/AI-loan-Repayment-/blob/main/src/app/api/advice/route.ts) | [Supabase](https://github.com/Aaryan1524/AI-loan-Repayment-/blob/main/package.json) | [Claude API](https://github.com/Aaryan1524/AI-loan-Repayment-/blob/main/package.json) | — | — |
 
-*Cells detected from source on 2026-10-13.*
+*Cells detected from source on 2026-10-14.*
 
 <!-- MATRIX:END -->
 
